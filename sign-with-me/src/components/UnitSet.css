@@ -1,0 +1,69 @@
+/* Container for the Unit Set Page */
+.unitset-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Full height */
+  width: 100vw; /* Full width */
+  margin: 0; /* Remove default margin */
+  padding: 20px; /* Add padding for spacing */
+  background: linear-gradient(
+    135deg,
+    #6a0dad,
+    #9b30ff
+  ); /* Gradient background */
+  color: white; /* White text color */
+  text-align: center;
+  font-family: "Arial", sans-serif;
+}
+
+/* Title Styling */
+h1 {
+  margin-bottom: 40px;
+  font-size: 3em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
+}
+
+/* Unit Set List Styling */
+.unitset-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between buttons */
+  width: 100%; /* Full width for the button list */
+  max-width: 600px; /* Optional max width for content */
+}
+
+/* Unit Button Styling */
+.unit-button {
+  display: inline-block;
+  background-color: #ffffff; /* White background */
+  color: #6a0dad; /* Purple text */
+  padding: 15px 30px;
+  font-size: 1.5em; /* Larger font size for buttons */
+  border-radius: 8px; /* More rounded corners */
+  border: 2px solid #6a0dad; /* Border color */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow for button depth */
+  text-decoration: none; /* Remove underline */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+  width: 100%; /* Full width for buttons */
+}
+
+/* Hover effect for Unit Buttons */
+.unit-button:hover {
+  background-color: #6a0dad; /* Purple background on hover */
+  color: white; /* White text on hover */
+  transform: translateY(-3px); /* Lift effect on hover */
+}
+
+/* Responsive styling */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2em; /* Smaller font size on small screens */
+  }
+
+  .unit-button {
+    font-size: 1.2em; /* Smaller button text on small screens */
+    padding: 12px 24px; /* Adjust padding on small screens */
+  }
+}

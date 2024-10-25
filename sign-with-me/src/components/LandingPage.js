@@ -1,7 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import React from "react";
 import "./LandingPage.css";
 
 function LandingPage() {
+  const navigate = useNavigate();
+
+  const unitsClick = () => {
+    navigate("/units");
+  };
   return (
     <div className="landing-container">
       <div className="content">
@@ -12,7 +18,9 @@ function LandingPage() {
           looking to advance your skills, our interactive lessons are designed
           to guide you every step of the way.
         </p>
-        <button className="get-started-button">Get Started</button>
+        <button className="get-started-button" onClick={unitsClick}>
+          Get Started
+        </button>
       </div>
     </div>
   );

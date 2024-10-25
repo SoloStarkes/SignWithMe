@@ -9,7 +9,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
 }
 
 /* Left side of the Navbar */
@@ -28,8 +27,9 @@
 /* Lessons Button Styling */
 .lessons-button,
 .translator-button,
-.login-button {
-  background-color: #9b30ff; /* Green background */
+.login-button,
+.home-button {
+  background-color: #7b2cbf; /* Green background */
   color: white; /* White text */
   border: none;
   padding: 10px 20px;
@@ -65,4 +65,8 @@
 
 .login-button:hover {
   background-color: #9932cc; /* Darker red on hover */
+}
+
+.home-button:hover {
+  color: #9932cc; /* Change color on hover */
 }
