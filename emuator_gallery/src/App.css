@@ -46,7 +46,15 @@
   width: 100vw;
   height: 100vh;
 }
-
+/* .Main_Div {
+  border: 5px solid transparent;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px;
+  background: linear-gradient(#fff, #fff) padding-box, 
+              linear-gradient(45deg, #007acc, #ff6347, #32cd32, #ffd700) border-box;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+} */
 .background {
   position: absolute;
   top: 0;
@@ -83,12 +91,12 @@
   padding: 2px;
   margin: 10px;
   border: 2px solid white;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   position: absolute;
   color:white;
   font-family: 'YourFontName';
   right: 10%;
-  bottom: 10%;
+  bottom: 15%;
   z-index: 1;
   text-align: center;
   width: 30%;
@@ -100,13 +108,14 @@
 }
 .actual_games{
   font-family: 'YourFontName';
-  font-size: clamp(20px, 2vw, 35px);
+  font-size: clamp(15px, 1.8vw, 35px);
+  padding-right: 30px;
 }
 
 .elevated-word {
   color:white;
   position: relative;
-  font-size: 20px; /* Set a base font size */
+  font-size: 15px; /* Set a base font size */
   text-align: center; /* Center the text */
 }
 

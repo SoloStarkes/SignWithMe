@@ -5,17 +5,21 @@ import { Plane } from '@react-three/drei'; // Import Plane from @react-three/dre
 import { TextureLoader, DoubleSide } from 'three'; // Import TextureLoader from three
 
 
-function Cube() {
+// function Cube() {
+function Cube({src}) {
+
   const planeRef = useRef();
 
-  const texture = new TextureLoader().load('/ps2_logo.webp'); // Load your image
+  // const texture = new TextureLoader().load('/ps2_logo.webp'); // Load your image
+  const texture = new TextureLoader().load(src); // Load your image
+
 
   useFrame(() => {
-    planeRef.current.rotation.y += 0.02; // Rotate the plane around the Y-axis
+    planeRef.current.rotation.y += 0.01; // Rotate the plane around the Y-axis
   });
 
     return (
-      <Plane ref={planeRef} args={[2.5, 3] } position = {[-3,0,0]}>
+      <Plane ref={planeRef} args={[3, 3] } position = {[-3,0,0]}>
         <meshStandardMaterial 
         attach="material" 
         map={texture} side={DoubleSide}
