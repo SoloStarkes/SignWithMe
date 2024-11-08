@@ -1,0 +1,23 @@
+.image {
+  width: 300px;
+  padding-top: 50px;
+  display: block;
+  margin: 0 auto;
+}
+
+.buttons {
+  width: 10%; /* Keep the specified width */
+  display: flex;
+  justify-content: center;
+  margin: 20px auto 0; /* Center horizontally and space below the image */
+  
+
+}
+
+button {
+  margin: 0 15px; /* Increased horizontal margin for more space between buttons */
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size:17px;
+
+}
