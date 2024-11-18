@@ -1,24 +1,30 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const {Int32, Decimal128} = require("mongodb");
 
 const unitSchema = new mongoose.Schema({
+    id: {
+        type: Number,
+        required: true,
+        unique: true
+    },
     name: {
         type: String,
-        required: true,
-        trim: true,
-        maxlength: 100
+        required: true
     },
     description: {
         type: String,
-        trim: true,
-        maxlength: 500
+        required: true
+    },
+    lessons: {
+
     },
     progress: {
         type: Number,
-        required: true,
+        required: false,
         min: 0,
-        max: 100
+        max: 100,
+        default: 0
     }
 }, { timestamps: true });
 
-module.exports = mongoose.model('Unit', unitSchema)
+module.exports = mongoose.model('Unit', unitSchema);
