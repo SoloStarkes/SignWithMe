@@ -1,3 +1,4 @@
+const Lesson = require('./lesson.js')
 const mongoose = require('mongoose');
 const {Int32, Decimal128} = require("mongodb");
 
@@ -15,9 +16,7 @@ const unitSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    lessons: {
-
-    },
+    lessons: [Lesson],
     progress: {
         type: Number,
         required: false,
