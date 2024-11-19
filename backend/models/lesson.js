@@ -9,7 +9,6 @@ const lessonSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-
     progress: {
         type: Number,
         required: true,
