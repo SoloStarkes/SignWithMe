@@ -11,7 +11,8 @@ const lessonSchema = new mongoose.Schema({
     },
     progress: {
         type: Number,
-        required: true,
+        required: false,
+        default: 0,
         min: 0,
         max: 100
     }
