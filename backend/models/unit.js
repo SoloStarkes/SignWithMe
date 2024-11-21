@@ -16,7 +16,6 @@ const unitSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    lessons: [Lesson],
     progress: {
         type: Number,
         required: false,
