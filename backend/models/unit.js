@@ -3,17 +3,21 @@ const mongoose = require('mongoose');
 const {Int32, Decimal128} = require("mongodb");
 
 const unitSchema = new mongoose.Schema({
-    id: {
+    unitId: {
         type: Number,
         required: true,
         unique: true
     },
-    name: {
+    title: {
         type: String,
         required: true
     },
     description: {
         type: String,
+        required: true
+    },
+    lessons: {
+        type: Array,
         required: true
     },
     progress: {
