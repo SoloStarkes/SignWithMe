@@ -6,6 +6,7 @@ const redisClient = Redis.createClient({
 });
 
 redisClient.on('error', (err) => console.error('Redis Client Error:', err));
+redisClient.on('ready', () => { console.log('Connected to the Redis database') });
 redisClient.connect(); // Establish connection
 
 module.exports = redisClient;

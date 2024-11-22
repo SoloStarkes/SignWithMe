@@ -5,7 +5,7 @@ const http = require('http');
 const path = require('path');
 const cors = require('cors');
 const app = express();
-const mongoose = require('mongoose');
+const mongoDbClient = require('./config/mongoDbConfig');
 const redisClient = require('./config/redisConfig');
 const session = require('express-session');
 const redisStore = require('connect-redis').default;
@@ -20,13 +20,6 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors);
-
-// MongoDB Setup
-mongoose.connect(process.env.DATABASE_CONNECTION_STRING, { useNewUrlParser: true });
-const db = mongoose.connection;
-db.on('error', (err) => { console.warn(err) })
-db.once('open', () => { console.log('Connected to the database') })
-
 app.use(
     session({
         store: new redisStore({ client: redisClient }),
