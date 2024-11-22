@@ -17,9 +17,13 @@ const lessonSchema = new mongoose.Schema({
         type: Buffer,
         required: false
     },
-    options: { // need to work on how to store the options
+    all_options: { // need to work on how to store the options
       type: Array,
       required: true
+    },
+    all_options_content: {
+      type: Buffer,
+      required: false
     },
     progress: {
         type: Number,
