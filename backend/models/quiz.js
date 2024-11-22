@@ -5,18 +5,22 @@ const lessonSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    unitId: {
+    lessonId: {
         type: Number,
         required: true
     },
-    title: {
+    question_title: {
         type: String,
         required: true
     },
-    all_quiz: [{
-       type: mongoose.Schema.Types.ObjectId,
-       required: true
-    }],
+    question_content: {
+        type: Buffer,
+        required: false
+    },
+    options: { // need to work on how to store the options
+      type: Array,
+      required: true
+    },
     progress: {
         type: Number,
         required: false,

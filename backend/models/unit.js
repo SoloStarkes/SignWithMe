@@ -16,10 +16,10 @@ const unitSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    lessons: {
-        type: Array,
+    lessons: [{
+        type: mongoose.Schema.Types.ObjectId,
         required: true
-    },
+    }],
     progress: {
         type: Number,
         required: false,
