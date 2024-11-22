@@ -7,7 +7,7 @@ import imageCAT from '../Letters/ASL_CAT.webp';
 import imageDOG from '../Letters/ASL_DOG1.webp';
 import imageBEE from '../Letters/ASL_BEE.webp';
 import imageANT from '../Letters/ASL_ANT.webp';
-import './quiz.css';
+import './Alphabet_Quiz.css';
 import QuizCompletion from './quizCompletion'; // Make sure to create this component
 import Navbar from "./Navbar";
 
@@ -100,8 +100,6 @@ function Quiz() {
   const currentQuestion = currentData[currentQuestionIndex];
 
   return (
-    <>
-    <Navbar />
     <div className = "Main_Div"style={{ paddingLeft: '15%', maxWidth: '600px', margin: '0 auto' }}>
           <h1 style={{paddingRight: "30%"}}>ASL Quiz</h1>
           <p style={{paddingLeft: "2%",fontSize:"25px"}}>{currentQuestion.question}</p>
@@ -151,7 +149,6 @@ function Quiz() {
               <strong>Total Score: {level1Score + level2Score}</strong>
           </div>
       </div>
-      </>
   );
 }
 

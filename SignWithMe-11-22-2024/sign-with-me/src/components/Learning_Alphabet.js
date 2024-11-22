@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import './Unit1.css';
+import './Learning_Alphabet.css';
 import Navbar from "./Navbar";
 
 
@@ -75,7 +75,6 @@ function Unit1() {
 
     return (
       <>
-      {/* <Navbar /> */}
       <div className="alphabet-container">
 
         <h1>ASL Alphabet</h1>
@@ -105,4 +104,3 @@ function Unit1() {
 }
 
 export default Unit1;
-

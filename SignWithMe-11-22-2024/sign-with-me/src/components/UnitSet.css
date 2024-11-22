@@ -1,4 +1,11 @@
-/* Common Button Styling for Unit and Lesson Buttons */
+.lesson-dropdown {
+  margin-left: 20px; /* Indent lessons under units */
+}
+
+.sub-lesson-dropdown {
+  margin-left: 40px; /* Further indent sub-lessons under lessons */
+}
+
 .unitset-container {
   display: flex;
   flex-direction: column;
@@ -8,11 +15,7 @@
   width: 100vw;
   margin: 0;
   padding: 20px;
-  background: linear-gradient(
-    135deg,
-    #6a0dad,
-    #d2c2e1
-  ); /* Purple background */
+  background: linear-gradient(135deg, #6a0dad, #d2c2e1); /* Purple background */
   color: white;
   text-align: center;
   font-family: "Arial", sans-serif;

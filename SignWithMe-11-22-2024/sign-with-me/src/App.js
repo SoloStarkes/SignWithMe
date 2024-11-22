@@ -3,10 +3,12 @@ import Home from "./components/Home";
 import Units from "./components/Units";
 import LoginPage from "./components/LoginPage";
 import SignUpPage from "./components/SignUpPage";
-import Unit1 from "./components/Unit1";
+import Learning_Alpha from "./components/Learning_Alphabet";
 import Translator from "./components/Translator";
-import Quiz from "./components/quiz"
+import Quiz from "./components/Alphabet_Quiz"
 import NavBar from "./components/Navbar"
+import Finger_Spelling from "./components/Finger_Spelling"
+import Greetings from "./components/Greetings"
 
 function App() {
   return (
@@ -19,7 +21,10 @@ function App() {
         <Route path="/translator" element={<Translator />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/units/unit1" element={<Unit1 />} />
+        <Route path="/units/lesson1" element={<Learning_Alpha />} />
+        <Route path="/units/lesson2" element={<Finger_Spelling />} />
+        <Route path="/units/lesson3" element={<Greetings />} />
+
       </Routes>
     </BrowserRouter>
   );
