@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 
 const unitRouter = require('./routes/units');
 const lessonRouter = require('./routes/lessons');
-const loginRouter = require('./routes/login');
+const loginRouter = require('./routes/auth');
 
 
 const port = process.env.PORT || 3000;
@@ -20,6 +20,7 @@ mongoose.connect(process.env.DATABASE_CONNECTION_STRING, { useNewUrlParser: true
 const db = mongoose.connection;
 db.on('error', (err) => { console.warn(err) })
 db.once('open', () => { console.log('Connected to the database') })
+db.once('load', load_data(mongoose))
 
 app.get('/api', (req, res) => {
     res.status(200).send('Hello!'); // must be replaced by path to landing page
