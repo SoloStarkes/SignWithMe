@@ -1,22 +1,51 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import "./SignUpPage.css";
+import axios from "axios";
 
 const SignUpPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [retypePassword, setRetypePassword] = useState("");
+  const [error, setError] = useState(""); // Correctly define both state and updater
+  const [success, setSuccess] = useState("");
 
   const navigate = useNavigate();
 
-  const handleSignUp = (e) => {
-    e.preventDefault();
-    if (password !== retypePassword) {
-      alert("Passwords do not match!");
-    } else {
-      alert(`Signed up as: ${username}`);
-      // Add sign-up logic here (e.g., API call)
+  const handleSignUp = async () => {
+    setError(""); // Reset error state
+    setSuccess(""); // Reset success state
+
+    try {
+      // Send a sign-up request to the backend
+      const response = await axios.post(
+        "http://localhost:9000/api/auth/signup",
+        {
+          username,
+          email,
+          password,
+        },
+        {
+          withCredentials: true, // Ensure cookies are sent and received
+        }
+      );
+
+      if (response.status === 201) {
+        alert("Account created successfully! Redirecting to login...");
+        setSuccess("Account created successfully! Redirecting to login...");
+        navigate("/login");
+      } else {
+        setError("Unexpected error during signup. Please try again.");
+      }
+    } catch (err) {
+      // Handle error and display message
+      if (err.response && err.response.status === 400) {
+        setError("Username already exists. Please choose a different one.");
+      } else {
+        console.log(err);
+        setError("An error occurred during signup. Please try again later.");
+      }
     }
   };
 
