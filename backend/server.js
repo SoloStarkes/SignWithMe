@@ -4,6 +4,7 @@ const express = require('express');
 const http = require('http');
 const path = require('path');
 const cors = require('cors');
+const logger = require('morgan');
 const app = express();
 const mongoDbClient = require('./config/mongoDbConfig');
 const redisClient = require('./config/redisConfig');
@@ -16,10 +17,16 @@ const authRouter = require('./routes/auth');
 const load_data = require('./utils/load_data')
 
 
-const port = process.env.PORT || 3000;
+const port = 9000;
 
 app.use(express.json());
-app.use(cors);
+app.use(logger("dev"));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 app.use(
     session({
         store: new redisStore({ client: redisClient }),
@@ -36,7 +43,7 @@ app.use(
 
 app.use('/api/units', unitRouter);
 app.use('/api/lessons', lessonRouter);
-app.use('/api/login', authRouter);
+app.use('/api/auth', authRouter);
 
 app.listen(port, () => {
     console.log(`Server started listening at port ${port}`)

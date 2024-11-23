@@ -8,7 +8,7 @@ router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
-    if (!user || !(await bcrypt.compare(password, user.password))) {
+    if (!user || !(await bcrypt.compare(password, user.hashedPassword))) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
@@ -34,8 +34,11 @@ router.post('/logout', (req, res) => {
 router.post('/signup', async (req, res) => {
   try {
     const { username, email, password } = req.body;
+    console.log(username);
+    console.log(email);
+    console.log(password);
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ username, email, password: hashedPassword });
+    const user = new User({ username, email, hashedPassword });
     await user.save();
     res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
