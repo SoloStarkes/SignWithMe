@@ -1,10 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useContext } from "react";
 import Logo from "../Assets/Logo.png";
+import { AuthContext } from "../AuthContext"; // Import AuthContext
 import "./Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const { isAuthenticated, logout } = useContext(AuthContext); // Access authentication context
+
+  const handleLogout = () => {
+    logout(); // Call logout function from AuthContext
+    navigate("/"); // Redirect to home page after logout
+  };
 
   const homeClick = () => {
     navigate("/");
@@ -37,13 +44,21 @@ const Navbar = () => {
           <button className="navbar-button lessons-button" onClick={unitsClick}>
             Units
           </button>
-          <button className="navbar-button translator-button" onClick={translateClick}>
+          <button
+            className="navbar-button translator-button"
+            onClick={translateClick}
+          >
             Translator Tool
           </button>
-          <button className="navbar-button b-button" onClick={loginClick}>
-             Login/Signup
-
-          </button>
+          {isAuthenticated ? (
+            <button className="navbar-button b-button" onClick={handleLogout}>
+              Logout
+            </button>
+          ) : (
+            <button className="navbar-button b-button" onClick={loginClick}>
+              Login/Signup
+            </button>
+          )}
         </div>
       </div>
     </nav>

@@ -1,22 +1,50 @@
-import React, { useState } from 'react';
-import './Greetings.css'; // Assuming you want to keep your styles in a separate CSS file
+import React, { useState } from "react";
+import "./Greetings.css"; // Assuming you want to keep your styles in a separate CSS file
+import axios from "axios"; // Ensure axios is imported to make HTTP requests
+import { useNavigate } from "react-router-dom";
 
 const Greetings = () => {
-  const [feedback, setFeedback] = useState('');
+  const [feedback, setFeedback] = useState("");
+  const userName = localStorage.getItem("userName"); // Get username from localStorage
+
+  const navigate = useNavigate();
 
   const giveFeedback = (greeting) => {
     const feedbackMessages = {
       hello: 'Great job! You signed "Hello" correctly.',
-      'good-morning': 'Well done! "Good Morning" is correct.',
-      'how-are-you': 'Nice work! You signed "How Are You?" correctly.',
+      "good-morning": 'Well done! "Good Morning" is correct.',
+      "how-are-you": 'Nice work! You signed "How Are You?" correctly.',
       goodbye: 'Perfect! You signed "Goodbye" correctly.',
-      'see-you-later': 'Excellent! "See You Later" is right!',
+      "see-you-later": 'Excellent! "See You Later" is right!',
     };
 
     if (feedbackMessages[greeting]) {
       setFeedback(feedbackMessages[greeting]);
     } else {
-      setFeedback('Oops! Please try again.');
+      setFeedback("Oops! Please try again.");
+    }
+  };
+
+  const handleFinish = async () => {
+    const userName = localStorage.getItem("userName");
+
+    if (userName) {
+      // Send a PUT request to update the lesson with quiz_complete = true
+      axios
+        .put("http://localhost:5000/api/lessons/update-lesson", {
+          lessonId: "103",
+          userName: userName,
+          quiz_complete: true,
+        })
+        .then((response) => {
+          console.log("Lesson updated:", response.data);
+        })
+        .catch((error) => {
+          console.error("Error updating lesson:", error);
+        });
+      navigate("/units");
+    } else {
+      console.error("User is not logged in, unable to update lesson.");
     }
   };
 
@@ -24,7 +52,10 @@ const Greetings = () => {
     <div>
       <header>
         <h1>Let's Practice ASL Greetings!</h1>
-        <p>Learn and practice American Sign Language (ASL) greetings with tips and visual aids!</p>
+        <p>
+          Learn and practice American Sign Language (ASL) greetings with tips
+          and visual aids!
+        </p>
       </header>
 
       <main id="practice-container">
@@ -40,9 +71,11 @@ const Greetings = () => {
           </div>
           <div className="tips">
             <h3>Tips:</h3>
-            <p>Start with your dominant hand in a fist, then open your fingers slightly and move your hand from your forehead outward.</p>
+            <p>
+              Start with your dominant hand in a fist, then open your fingers
+              slightly and move your hand from your forehead outward.
+            </p>
           </div>
-          {/* <button className="submit-btn" onClick={() => giveFeedback('hello')}>Submit</button> */}
           <p id="feedback">{feedback}</p>
         </div>
 
@@ -58,9 +91,11 @@ const Greetings = () => {
           </div>
           <div className="tips">
             <h3>Tips:</h3>
-            <p>Start with your right hand in a fist, then place your thumb under your chin and move it away from your face.</p>
+            <p>
+              Start with your right hand in a fist, then place your thumb under
+              your chin and move it away from your face.
+            </p>
           </div>
-          {/* <button className="submit-btn" onClick={() => giveFeedback('good-morning')}>Submit</button> */}
           <p id="feedback">{feedback}</p>
         </div>
 
@@ -76,9 +111,11 @@ const Greetings = () => {
           </div>
           <div className="tips">
             <h3>Tips:</h3>
-            <p>Place both hands with fingers spread, facing each other, then move them apart in a circular motion.</p>
+            <p>
+              Place both hands with fingers spread, facing each other, then move
+              them apart in a circular motion.
+            </p>
           </div>
-          {/* <button className="submit-btn" onClick={() => giveFeedback('how-are-you')}>Submit</button> */}
           <p id="feedback">{feedback}</p>
         </div>
 
@@ -94,9 +131,12 @@ const Greetings = () => {
           </div>
           <div className="tips">
             <h3>Tips:</h3>
-            <p>To say goodbye, wave your hand with your fingers spread. You can do this by simply extending your fingers and waving them side to side.</p>
+            <p>
+              To say goodbye, wave your hand with your fingers spread. You can
+              do this by simply extending your fingers and waving them side to
+              side.
+            </p>
           </div>
-          {/* <button className="submit-btn" onClick={() => giveFeedback('goodbye')}>Submit</button> */}
           <p id="feedback">{feedback}</p>
         </div>
 
@@ -112,14 +152,20 @@ const Greetings = () => {
           </div>
           <div className="tips">
             <h3>Tips:</h3>
-            <p>To say "See You Later," you can wave your hand from side to side or use the "peace" sign and then make a slight wave.</p>
+            <p>
+              To say "See You Later," you can wave your hand from side to side
+              or use the "peace" sign and then make a slight wave.
+            </p>
           </div>
-          {/* <button className="submit-btn" onClick={() => giveFeedback('see-you-later')}>Submit</button> */}
           <p id="feedback">{feedback}</p>
         </div>
       </main>
 
+      {/* Finish Button */}
       <footer>
+        <button className="finish-btn" onClick={handleFinish}>
+          Finish
+        </button>
         <p>Practice makes perfect! Keep practicing your ASL skills daily!</p>
       </footer>
     </div>

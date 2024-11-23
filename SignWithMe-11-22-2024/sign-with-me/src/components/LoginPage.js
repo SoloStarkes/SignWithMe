@@ -1,16 +1,31 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./LoginPage.css";
+import axios from "axios";
+import { AuthContext } from "../AuthContext"; // Import AuthContext
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext); // Access login function from AuthContext
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    alert(`Logged in as: ${username}`);
+    try {
+      const response = await axios.post("http://localhost:5000/api/signin", {
+        username,
+        password,
+      });
+      localStorage.setItem("token", response.data.token); // Store token in localStorage
+      login(response.data.token, username); // Update the AuthContext to reflect that the user is logged in
+      setMessage("Sign-in successful");
+      navigate("/"); // Redirect to the home page
+    } catch (error) {
+      setMessage(error.response?.data?.message || "Something went wrong");
+    }
   };
 
   const handleSignUp = () => {
@@ -24,6 +39,7 @@ const LoginPage = () => {
   return (
     <div className="login-container">
       <h2>Login</h2>
+      {message && <p>{message}</p>}
       <form onSubmit={handleLogin} className="login-form">
         <input
           type="text"

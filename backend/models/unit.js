@@ -1,29 +1,37 @@
-const Lesson = require('./lesson.js')
-const mongoose = require('mongoose');
-const {Int32, Decimal128} = require("mongodb");
+const mongoose = require("mongoose");
 
-const unitSchema = new mongoose.Schema({
-    id: {
-        type: Number,
-        required: true,
-        unique: true
+// Define the unit schema
+const unitSchema = new mongoose.Schema(
+  {
+    unitId: {
+      type: String,
+      required: true,
     },
-    name: {
-        type: String,
-        required: true
+    userName: {
+      type: String,
+      required: true,
     },
-    description: {
-        type: String,
-        required: true
+    unitName: {
+      type: String,
+      required: true,
     },
-    lessons: [Lesson],
-    progress: {
-        type: Number,
-        required: false,
-        min: 0,
-        max: 100,
-        default: 0
-    }
-}, { timestamps: true });
+    exam_complete: {
+      type: Boolean,
+      default: false, // Default value is false
+    },
+  },
+  {
+    // Create a compound index for unitId and userName combination
+    indexes: [
+      {
+        fields: { unitId: 1, userName: 1 },
+        unique: true, // Ensures that unitId + userName is unique
+      },
+    ],
+  }
+);
 
-module.exports = mongoose.model('Unit', unitSchema);
+// Create a model for the unit schema
+const Unit = mongoose.model("Unit", unitSchema);
+
+module.exports = Unit;
