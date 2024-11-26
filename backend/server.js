@@ -14,7 +14,7 @@ const redisStore = require('connect-redis').default;
 const unitRouter = require('./routes/units');
 const lessonRouter = require('./routes/lessons');
 const authRouter = require('./routes/auth');
-const load_data = require('./utils/load_data')
+const load_data = require('./utils/load_data');
 
 
 const port = 9000;
@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(logger("dev"));
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: process.env.CORS_ORIGIN,
     credentials: true,
   })
 );
@@ -34,15 +34,15 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            secure: false,
+            secure: process.env.NODE_ENV === 'production',
             httpOnly: true,
             maxAge: 1000 * 60 * 60 * 24,
         },
     })
 );
 
-app.use('/api/units', unitRouter);
-app.use('/api/lessons', lessonRouter);
+app.use('/api/progress/units', unitRouter);
+app.use('/api/progress/lessons', lessonRouter);
 app.use('/api/auth', authRouter);
 
 app.listen(port, () => {

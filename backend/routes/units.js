@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path');
 const Unit = require('../models/unit')
-const router = express.Router()
+const router = express.Router({ mergeParams: true })
 
 
 router.get('/', async (req, res) => {
@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:unitId', async (req, res) => {
     try {
-        const unit = await Unit.findById(req.params.id);
+        const unit = await Unit.findById(req.params.unitId);
         res.status(400).json(unit);
     }
     catch (error) {

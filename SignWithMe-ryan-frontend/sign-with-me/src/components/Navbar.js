@@ -1,25 +1,38 @@
 import { useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Logo from "../Assets/Logo.png";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Tracks login state
   const navigate = useNavigate();
 
-  const homeClick = () => {
-    navigate("/");
-  };
+  // Check authentication status when Navbar loads
+  useEffect(() => {
+    const checkAuthStatus = async () => {
+      try {
+        const response = await axios.get("http://localhost:9000/api/auth/status", {
+          withCredentials: true, // Include session cookies
+        });
+        setIsLoggedIn(response.data.isLoggedIn);
+      } catch (error) {
+        console.error("Error checking authentication status:", error);
+        setIsLoggedIn(false);
+      }
+    };
 
-  const unitsClick = () => {
-    navigate("/units");
-  };
+    checkAuthStatus();
+  }, []);
 
-  const loginClick = () => {
-    navigate("/login");
-  };
-
-  const translateClick = () => {
-    navigate("/translator");
+  const handleLogout = async () => {
+    try {
+      await axios.post("http://localhost:9000/api/auth/logout", {}, { withCredentials: true });
+      setIsLoggedIn(false);
+      navigate("/login");
+    } catch (error) {
+      console.error("Sorry! Error during logout:", error);
+    }
   };
 
   return (
@@ -31,19 +44,29 @@ const Navbar = () => {
           </a>
         </div>
         <div className="navbar-right">
-          <button className="navbar-button home-button" onClick={homeClick}>
+          <button className="navbar-button home-button" onClick={() => navigate("/")}>
             Home
           </button>
-          <button className="navbar-button lessons-button" onClick={unitsClick}>
+          <button className="navbar-button lessons-button" onClick={() => navigate("/units")}>
             Units
           </button>
-          <button className="navbar-button translator-button" onClick={translateClick}>
+          <button className="navbar-button translator-button" onClick={() => navigate("/translator")}>
             Translator Tool
           </button>
-          <button className="navbar-button b-button" onClick={loginClick}>
-             Login/Signup
-
-          </button>
+          {isLoggedIn ? (
+            <>
+              <button className="navbar-button dashboard-button" onClick={() => navigate("/dashboard")}>
+                Dashboard
+              </button>
+              <button className="navbar-button logout-button" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <button className="navbar-button b-button" onClick={() => navigate("/login")}>
+              Login/Signup
+            </button>
+          )}
         </div>
       </div>
     </nav>
@@ -51,3 +74,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+

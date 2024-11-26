@@ -20,6 +20,14 @@ router.post('/login', async (req, res) => {
   }
 });
 
+router.get('/status', (req, res) => {
+  if (req.session.userId) {
+    return res.status(200).json({ isLoggedIn: true });
+  }
+  res.status(200).json({ isLoggedIn: false });
+});
+
+
 router.post('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
@@ -34,15 +42,19 @@ router.post('/logout', (req, res) => {
 router.post('/signup', async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    console.log(username);
-    console.log(email);
-    console.log(password);
     const hashedPassword = await bcrypt.hash(password, 10);
+    const userExists = await User.findOne({ username, email });
+    console.log(userExists);
+
+    if (userExists) {
+      return res.status(400).json({ success: false, message: "User already exists!" })
+    }
+
     const user = new User({ username, email, hashedPassword });
     await user.save();
-    res.status(201).json({ message: 'User created successfully' });
+    res.status(201).json({ success: true, message: 'User created successfully' });
   } catch (error) {
-    res.status(500).json({ message: 'Error creating user', error });
+    res.status(500).json({ success: false, message: 'Error creating user', error });
   }
 });
 
