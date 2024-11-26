@@ -7,12 +7,21 @@ import Learning_Alpha from "./components/Learning_Alphabet";
 import Translator from "./components/Translator";
 import Quiz from "./components/Alphabet_Quiz";
 import NavBar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Finger_Spelling from "./components/Finger_Spelling";
 import Greetings from "./components/Greetings";
 import Hello from "./components/Hello";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AuthProvider from "./AuthContext";
+import Grammer from "./components/Grammer";
+import Sentence_Practice from "./components/Sentence";
+import Noun_Adj from "./components/Noun_Adj";
+import NounsAssignment1 from "./components/Noun_Assignment_1";
+import NounsAssignment2 from "./components/Noun_Assignment_2";
+import Adjective_Assignment from "./components/Adjective_Assignment";
+import Verb from "./components/Verb";
+import Numbers from "./components/Numbers";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -38,9 +47,30 @@ function App() {
           <Route path="/units/lesson1" element={<Learning_Alpha />} />
           <Route path="/units/lesson2" element={<Finger_Spelling />} />
           <Route path="/units/lesson3" element={<Greetings />} />
+          <Route path="/units/lesson4" element={<Grammer />} />
           <Route path="/hello" element={<Hello />} />
+          <Route
+            path="/units/lesson4/sentence"
+            element={<Sentence_Practice />}
+          />
+          <Route path="/units/lesson5/N_A" element={<Noun_Adj />} />
+          <Route
+            path="/units/lesson5/N_A/Noun_Assigment1"
+            element={<NounsAssignment1 />}
+          />
+          <Route
+            path="/units/lesson5/N_A/Noun_Assigment2"
+            element={<NounsAssignment2 />}
+          />
+          <Route
+            path="/units/lesson5/N_A/Adj_Assigment"
+            element={<Adjective_Assignment />}
+          />
+          <Route path="/units/lesson6" element={<Verb />} />
+          <Route path="/units/lesson7" element={<Numbers />} />
         </Routes>
       </BrowserRouter>
+      {/* <Footer /> */}
     </AuthProvider>
   );
 }

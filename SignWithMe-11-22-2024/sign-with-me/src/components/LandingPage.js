@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import "./LandingPage.css";
-import Navbar from "./Navbar"
+
 function LandingPage() {
   const navigate = useNavigate();
 
@@ -9,7 +9,6 @@ function LandingPage() {
     navigate("/units");
   };
   return (
-    
     <div className="landing-container">
       <div className="content">
         <h1 className="welcome-text">Welcome to Sign With Me!</h1>
