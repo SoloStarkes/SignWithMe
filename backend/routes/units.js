@@ -1,31 +1,50 @@
-const express = require('express')
-const path = require('path');
-const Unit = require('../models/unit')
-const router = express.Router({ mergeParams: true })
+const express = require('express');
+const Unit = require('../models/unit');
+const { authUser } = require('../utils/authUtils');
+const router = express.Router({ mergeParams: true });
 
+// Get all units with progress for the logged-in user
+router.get('/', authUser, async (req, res) => {
+  try {
+    const units = await Unit.find({ userName: req.session.userId }).select('unitName exam_complete');
+    res.status(200).json(units);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Error retrieving units' });
+  }
+});
 
-router.get('/', async (req, res) => {
-    try {
-        const units = await Unit.find().select('title');
-        res.status(200).json(units);
+// Get progress for a specific unit
+router.get('/:unitId', authUser, async (req, res) => {
+  try {
+    const unit = await Unit.findOne({ unitId: req.params.unitId, userName: req.session.userId });
+    if (!unit) {
+      return res.status(404).json({ success: false, message: 'Unit not found' });
     }
-    catch (err) {
-        console.error(err);
-    }
-})
+    res.status(200).json(unit);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Error retrieving unit progress' });
+  }
+});
 
-router.get('/:unitId', async (req, res) => {
-    try {
-        const unit = await Unit.findById(req.params.unitId);
-        res.status(400).json(unit);
+// Update progress for a specific unit
+router.patch('/:unitId', authUser, async (req, res) => {
+  try {
+    const { exam_complete } = req.body;
+    const unit = await Unit.findOneAndUpdate(
+      { unitId: req.params.unitId, userName: req.session.userId },
+      { exam_complete },
+      { new: true }
+    );
+    if (!unit) {
+      return res.status(404).json({ success: false, message: 'Unit not found' });
     }
-    catch (error) {
-        console.warn(error);
-    }
-})
-
-// endpoint to return progress
-// dependent on if the user is logged in
-// endpoint to modify progress
+    res.status(200).json({ success: true, message: 'Progress updated', unit });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Error updating progress' });
+  }
+});
 
 module.exports = router;
