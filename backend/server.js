@@ -14,7 +14,6 @@ const redisStore = require('connect-redis').default;
 const unitRouter = require('./routes/units');
 const lessonRouter = require('./routes/lessons');
 const authRouter = require('./routes/auth');
-const load_data = require('./utils/load_data');
 
 
 const port = 9000;
