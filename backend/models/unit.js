@@ -1,7 +1,6 @@
-const Lesson = require('./lesson.js')
-const mongoose = require('mongoose');
-const {Int32, Decimal128} = require("mongodb");
+const mongoose = require("mongoose");
 
+// Define the unit schema
 const unitSchema = new mongoose.Schema(
   {
     unitId: {
@@ -32,4 +31,8 @@ const unitSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model('Unit', unitSchema);
+// Create a model for the unit schema
+const Unit = mongoose.model("Unit", unitSchema);
+
+module.exports = Unit;
+

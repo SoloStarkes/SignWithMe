@@ -8,8 +8,11 @@ router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
-    if (!user || !(await bcrypt.compare(password, user.hashedPassword))) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+    if (!user) {
+      return res.status(401).json({ message: "User not found!"});
+    }
+    if (!(await bcrypt.compare(password, user.hashedPassword))) {
+      return res.status(401).json({ message: "Password's don't match!" });
     }
 
     // Save user ID in session

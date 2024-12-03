@@ -1,49 +1,55 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const express = require('express');
-const http = require('http');
-const path = require('path');
-const cors = require('cors');
-const logger = require('morgan');
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+
+// Import the auth routes
+const authRoutes = require("./routes/authcall");
+
+// Import the lesson routes
+const lessonRoutes = require("./routes/lessonRoutes"); // Add this line to import lesson routes
+const unitRoutes = require("./routes/units");
+
 const app = express();
-const mongoDbClient = require('./config/mongoDbConfig');
-const redisClient = require('./config/redisConfig');
-const session = require('express-session');
-const redisStore = require('connect-redis').default;
+app.use(bodyParser.json());
+const port = process.env.PORT || 5000;
 
-const unitRouter = require('./routes/units');
-const lessonRouter = require('./routes/lessons');
-const authRouter = require('./routes/auth');
-
-
-const port = 9000;
-
+app.use(cors({
+      origin: "http://localhost:3000",
+      credentials: true
+    }
+));
 app.use(express.json());
-app.use(logger("dev"));
-app.use(
-  cors({
-    origin: process.env.CORS_ORIGIN,
-    credentials: true,
-  })
-);
-app.use(
-    session({
-        store: new redisStore({ client: redisClient }),
-        secret: process.env.SESSION_SECRET_KEY,
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-            secure: process.env.NODE_ENV === 'production',
-            httpOnly: true,
-            maxAge: 1000 * 60 * 60 * 24,
-        },
-    })
-);
 
-app.use('/api/progress/units', unitRouter);
-app.use('/api/progress/lessons', lessonRouter);
-app.use('/api/auth', authRouter);
+// Connect to MongoDB
+mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
+db.once("open", () => console.log("Connected to MongoDB"));
 
+// Landing route
+app.get("/", (req, res) => {
+  res.status(200).send("A different message!"); // Replace with path to landing page
+});
+
+// Use the auth routes
+app.use("/api", authRoutes)
+
+// Use the lesson routes
+app.use("/api/lessons", lessonRoutes); // Add this line to use lesson routes
+app.use("/api/units", unitRoutes);
+
+// API route
+app.get("/api", (req, res) => {
+  res.json({ message: "Hello from the backend!" });
+});
+
+// Start the server
 app.listen(port, () => {
-    console.log(`Server started listening at port ${port}`)
+  console.log(`Server started listening at port ${port}`);
 });

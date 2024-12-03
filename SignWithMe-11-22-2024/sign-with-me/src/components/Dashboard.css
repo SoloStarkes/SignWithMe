@@ -1,0 +1,17 @@
+.main-container {
+    flex: content-box;
+    padding-top: 100px;
+}
+
+#main-title {
+    font-size: 100px;
+    color: white;
+}
+
+.completed-lessons-container {
+    background-color: white;
+}
+
+.completed-units-container {
+    background-color: white;
+}
