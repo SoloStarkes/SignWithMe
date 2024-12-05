@@ -53,7 +53,7 @@ router.post("/signup", async (req, res) => {
       },
       {
         lessonId: 201,
-        lessonName: "grammer",
+        lessonName: "grammar",
         unitId: "unit2",
         userName: username,
         quiz_complete: false,
@@ -75,20 +75,6 @@ router.post("/signup", async (req, res) => {
       {
         lessonId: 301,
         lessonName: "numbers",
-        unitId: "unit3",
-        userName: username,
-        quiz_complete: false,
-      },
-      {
-        lessonId: 302,
-        lessonName: "noun_adj3",
-        unitId: "unit3",
-        userName: username,
-        quiz_complete: false,
-      },
-      {
-        lessonId: 303,
-        lessonName: "verb_colors3",
         unitId: "unit3",
         userName: username,
         quiz_complete: false,

@@ -61,21 +61,20 @@ router.get("/get-lesson", async (req, res) => {
 });
 
 router.get("/get-lessons", async (req, res) => {
-  const { userName } = req.query.userName;
+  const userName  = req.query.userName;
   let lessons;
   try {
-    lessons = await Lesson.find();
+    lessons = await Lesson.find({ userName });
     if (!lessons) {
       return res.status(404).json({ message: `Lesson not found for user ${userName}` });
     }
     console.log(`Username: ${userName}`);
-    console.log(`Lessons Size: ${lessons.size}`);
-    return res.status(200).send(lessons);
+    console.log(`Lessons Size: ${lessons.length}`);
+    return res.status(200).json(lessons);
   } catch (error) {
     console.error("Error fetching lesson:", error);
     res.status(500).json({ message: "Server error", error });
   }
 })
-
 
 module.exports = router;

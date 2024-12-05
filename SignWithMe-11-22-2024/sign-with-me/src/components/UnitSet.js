@@ -173,22 +173,23 @@ const UnitSet = () => {
   useEffect(() => {
   if (userName) {
     axios
-      .get("http://localhost:5000/api/lessons/get-lessons", {
-        params: {
-          userName: userName,
-        },
-      })
-      .then((response) => {
-        const lessons = response.data.lesson;
-        if (lessons) {
-          setTotalLessons(lessons.length);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching lesson data:", error);
-      });
+    .get("http://localhost:5000/api/lessons/get-lessons", {
+      params: {
+        userName: userName,
+      },
+    })
+    .then((response) => {
+      const lessons = response.data; // Access the lessons array directly
+      console.log("Lessons:", lessons);
+      if (lessons) {
+        setTotalLessons(lessons.length);
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching lesson data:", error);
+    });
   }
-}, [userName]);
+  }, [userName]);
 
   return (
       <div className="unitset-container">
