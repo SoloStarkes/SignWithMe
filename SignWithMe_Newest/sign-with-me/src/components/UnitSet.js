@@ -20,7 +20,7 @@ const UnitSet = () => {
     if (userName) {
       // Unit 1
       axios
-        .get("http://localhost:5000/api/lessons/get-lesson", {
+        .get("http://localhost:5001/api/lessons/get-lesson", {
           params: {
             lessonId: "101", // Lesson ID to check
             userName: userName, // The userName from local storage
@@ -41,7 +41,7 @@ const UnitSet = () => {
         });
 
       axios
-        .get("http://localhost:5000/api/lessons/get-lesson", {
+        .get("http://localhost:5001/api/lessons/get-lesson", {
           params: {
             lessonId: "102", // Lesson ID to check
             userName: userName, // The userName from local storage
@@ -61,7 +61,7 @@ const UnitSet = () => {
           console.error("Error fetching lesson data:", error);
         });
       axios
-        .get("http://localhost:5000/api/lessons/get-lesson", {
+        .get("http://localhost:5001/api/lessons/get-lesson", {
           params: {
             lessonId: "103", // Lesson ID to check
             userName: userName, // The userName from local storage
@@ -83,7 +83,7 @@ const UnitSet = () => {
 
       // Unit 2
       axios
-        .get("http://localhost:5000/api/lessons/get-lesson", {
+        .get("http://localhost:5001/api/lessons/get-lesson", {
           params: {
             lessonId: "201", // Lesson ID to check
             userName: userName, // The userName from local storage
@@ -104,7 +104,7 @@ const UnitSet = () => {
         });
 
       axios
-        .get("http://localhost:5000/api/lessons/get-lesson", {
+        .get("http://localhost:5001/api/lessons/get-lesson", {
           params: {
             lessonId: "202", // Lesson ID to check
             userName: userName, // The userName from local storage
@@ -125,7 +125,7 @@ const UnitSet = () => {
         });
 
       axios
-        .get("http://localhost:5000/api/lessons/get-lesson", {
+        .get("http://localhost:5001/api/lessons/get-lesson", {
           params: {
             lessonId: "203", // Lesson ID to check
             userName: userName, // The userName from local storage

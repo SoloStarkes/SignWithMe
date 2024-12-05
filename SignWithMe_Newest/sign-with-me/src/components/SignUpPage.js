@@ -21,7 +21,7 @@ const SignUpPage = () => {
     } else {
       try {
         // Send sign-up request to the backend
-        await axios.post("http://localhost:5000/api/signup", {
+        await axios.post("http://localhost:5001/api/signup", {
           username,
           email,
           password,
@@ -29,7 +29,7 @@ const SignUpPage = () => {
         setMessage("User created successfully");
 
         // After sign-up, log the user in automatically
-        const response = await axios.post("http://localhost:5000/api/signin", {
+        const response = await axios.post("http://localhost:5001/api/signin", {
           username,
           password,
         });

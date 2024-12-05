@@ -82,7 +82,7 @@ function ASLQuiz() {
         if (userName) {
           // Send a PUT request to update the lesson with quiz_complete = true
           axios
-            .put("http://localhost:5000/api/lessons/update-lesson", {
+            .put("http://localhost:5001/api/lessons/update-lesson", {
               lessonId: "202",
               userName: userName,
               quiz_complete: true,

@@ -11,6 +11,7 @@ const SECRET_KEY = process.env.JWT_SECRET || "secret_key";
 // Sign-up route
 router.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
+  console.log(username);
 
   try {
     // Check if the username or email already exists in the database
