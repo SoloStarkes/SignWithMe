@@ -68,7 +68,8 @@ router.get("/get-lessons", async (req, res) => {
     if (!lessons) {
       return res.status(404).json({ message: `Lesson not found for user ${userName}` });
     }
-
+    console.log(`Username: ${userName}`);
+    console.log(`Lessons Size: ${lessons.size}`);
     return res.status(200).send(lessons);
   } catch (error) {
     console.error("Error fetching lesson:", error);

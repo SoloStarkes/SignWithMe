@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios"; // Import axios
 import "./UnitSet.css";
+import { Card, CardHeader, CardContent, CardTitle, CircularProgress } from "./Card";
 
 const UnitSet = () => {
   const [openUnit, setOpenUnit] = useState(null); // Tracks which unit dropdown is open
@@ -12,6 +13,12 @@ const UnitSet = () => {
   const [quizCompletedGrammer, setquizCompletedGrammer] = useState(false); // Tracks if the quiz for lesson 101 is completed
   const [quizCompletedNounAdj, setquizCompletedNounAdj] = useState(false); // Tracks if the quiz for lesson 101 is completed
   const [quizCompletedVerbColors, setquizCompletedVerbColors] = useState(false); // Tracks if the quiz for lesson 101 is completed
+
+  const [lessonsCompleted, setLessonsCompleted] = useState(0);
+  const [totalLessons, setTotalLessons] = useState(6); // Adjust as needed
+  const [unitsCompleted, setUnitsCompleted] = useState(0);
+  const [totalUnits, setTotalUnits] = useState(3); // Adjust as needed
+
 
   // Check if the user is signed in and retrieve their username
   const userName = localStorage.getItem("userName");
@@ -163,8 +170,48 @@ const UnitSet = () => {
     setOpenLesson(openLesson === lesson ? null : lesson);
   };
 
+  useEffect(() => {
+  if (userName) {
+    axios
+      .get("http://localhost:5000/api/lessons/get-lessons", {
+        params: {
+          userName: userName,
+        },
+      })
+      .then((response) => {
+        const lessons = response.data.lesson;
+        if (lessons) {
+          setTotalLessons(lessons.length);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching lesson data:", error);
+      });
+  }
+}, [userName]);
+
   return (
-    <div className="unitset-container">
+      <div className="unitset-container">
+        {userName && (
+      <>
+        <h1>Welcome, {userName}!</h1>
+        <Card>
+          <CardHeader>
+            <CardTitle>Your Progress</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <CircularProgress
+                value={(lessonsCompleted / totalLessons) * 100}
+                label={`Lessons: ${lessonsCompleted}/${totalLessons}`}
+              />
+            <CircularProgress
+              value={(unitsCompleted / totalUnits) * 100}
+              label={`Units: ${unitsCompleted}/${totalUnits}`}
+            />
+          </CardContent>
+        </Card>
+      </>
+    )}
       <h1>Units Dashboard</h1>
       <div className="unitset-list">
         {/* Unit 1 */}
@@ -274,3 +321,4 @@ const UnitSet = () => {
 };
 
 export default UnitSet;
+
