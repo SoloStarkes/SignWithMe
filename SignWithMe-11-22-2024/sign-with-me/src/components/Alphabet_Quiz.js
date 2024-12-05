@@ -103,6 +103,7 @@ function Quiz() {
         });
         console.log("Lesson updated successfully!");
       }
+      console.log("Exam updated successfully!");
     } catch (error) {
       console.error("Error updating lesson:", error);
     }

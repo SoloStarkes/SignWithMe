@@ -12,6 +12,8 @@ const UnitSet = () => {
   const [quizCompletedGrammer, setquizCompletedGrammer] = useState(false); // Tracks if the quiz for lesson 101 is completed
   const [quizCompletedNounAdj, setquizCompletedNounAdj] = useState(false); // Tracks if the quiz for lesson 101 is completed
   const [quizCompletedVerbColors, setquizCompletedVerbColors] = useState(false); // Tracks if the quiz for lesson 101 is completed
+  const [quizCompletedNumbers, setquizCompletedNumbers] = useState(false); // Tracks if the quiz for lesson 101 is completed
+  const [finalComplete, setFinalComplete] = useState(false);
 
   // Check if the user is signed in and retrieve their username
   const userName = localStorage.getItem("userName");
@@ -144,6 +146,50 @@ const UnitSet = () => {
         .catch((error) => {
           console.error("Error fetching lesson data:", error);
         });
+
+      // Unit 3
+      axios
+        .get("http://localhost:5000/api/lessons/get-lesson", {
+          params: {
+            lessonId: "301", // Lesson ID to check
+            userName: userName, // The userName from local storage
+          },
+        })
+        .then((response) => {
+          const lesson = response.data.lesson;
+          console.log("Lesson Data:", lesson); // Log the fetched lesson
+          if (lesson && lesson.quiz_complete) {
+            console.log("Quiz Completed is true!"); // Confirm quiz status
+            setquizCompletedNumbers(true);
+          } else {
+            console.log("Quiz Completed is false or not set.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching lesson data:", error);
+        });
+
+      //Final
+      axios
+        .get("http://localhost:5000/api/exams/get-exam", {
+          params: {
+            examId: "final", // Lesson ID to check
+            userName: userName, // The userName from local storage
+          },
+        })
+        .then((response) => {
+          const exam = response.data.exam;
+          console.log("Exam Data:", exam); // Log the fetched lesson
+          if (exam && exam.progress >= 0.8) {
+            console.log("Exam Passed!"); // Confirm quiz status
+            setFinalComplete(true);
+          } else {
+            console.log("Quiz Completed is false or not set.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching lesson data:", error);
+        });
     } else {
       setquizCompletedAlpha(false);
       setquizCompletedFinger(false);
@@ -151,6 +197,8 @@ const UnitSet = () => {
       setquizCompletedGrammer(false);
       setquizCompletedNounAdj(false);
       setquizCompletedVerbColors(false);
+      setquizCompletedNumbers(false);
+      setFinalComplete(false);
     }
   }, [userName]);
 
@@ -163,6 +211,7 @@ const UnitSet = () => {
     setOpenLesson(openLesson === lesson ? null : lesson);
   };
 
+  const progress = 90;
   return (
     <div className="unitset-container">
       <h1>Units Dashboard</h1>
@@ -237,26 +286,37 @@ const UnitSet = () => {
         <div>
           <button onClick={() => toggleUnit(3)} className="unit-button">
             Unit 3: Advanced
+            {quizCompletedNumbers && (
+              <span style={{ color: "green", fontSize: "1.5rem" }}>✔</span>
+            )}
           </button>
           {openUnit === 3 && (
             <div className="lesson-dropdown">
               <Link to="/units/lesson7" className="lesson-link">
                 Numbers{" "}
-                {/* {quizCompletedAlpha && (
+                {quizCompletedNumbers && (
                   <span style={{ color: "green", fontSize: "1.5rem" }}>✔</span>
-                )} */}
+                )}
               </Link>
-              <Link to="/units/lesson5/N_A" className="lesson-link">
-                Nouns and Adjectives{" "}
-                {/* {quizCompletedFinger && (
+            </div>
+          )}
+        </div>
+
+        {/* Final */}
+        <div>
+          <button onClick={() => toggleUnit(4)} className="unit-button">
+            Final Exam
+            {finalComplete && (
+              <span style={{ color: "green", fontSize: "1.5rem" }}>✔</span>
+            )}
+          </button>
+          {openUnit === 4 && (
+            <div className="lesson-dropdown">
+              <Link to="/units/Final" className="lesson-link">
+                Final Exam{" "}
+                {finalComplete && (
                   <span style={{ color: "green", fontSize: "1.5rem" }}>✔</span>
-                )} */}
-              </Link>
-              <Link to="/units/lesson6" className="lesson-link">
-                Verbs and Colors{" "}
-                {/* {quizCompletedGreetings && (
-                  <span style={{ color: "green", fontSize: "1.5rem" }}>✔</span>
-                )} */}
+                )}
               </Link>
             </div>
           )}

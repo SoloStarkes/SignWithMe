@@ -11,6 +11,8 @@ const authRoutes = require("./routes/authcall");
 // Import the lesson routes
 const lessonRoutes = require("./routes/lessonRoutes"); // Add this line to import lesson routes
 
+const examRoutes = require("./routes/examRoutes");
+
 const app = express();
 app.use(bodyParser.json());
 const port = process.env.PORT || 5000;
@@ -37,6 +39,7 @@ app.use("/api", authRoutes);
 
 // Use the lesson routes
 app.use("/api/lessons", lessonRoutes); // Add this line to use lesson routes
+app.use("/api/exams", examRoutes); // Add this line to use lesson routes
 
 // API route
 app.get("/api", (req, res) => {

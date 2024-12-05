@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const Lesson = require("../models/lesson"); // Assuming you have a lesson model
 const Unit = require("../models/unit"); // Make sure to import the Unit model
+const Exam = require("../models/exam.js");
 
 const router = express.Router();
 const SECRET_KEY = process.env.JWT_SECRET || "secret_key";
@@ -79,20 +80,6 @@ router.post("/signup", async (req, res) => {
         userName: username,
         quiz_complete: false,
       },
-      {
-        lessonId: 302,
-        lessonName: "noun_adj3",
-        unitId: "unit3",
-        userName: username,
-        quiz_complete: false,
-      },
-      {
-        lessonId: 303,
-        lessonName: "verb_colors3",
-        unitId: "unit3",
-        userName: username,
-        quiz_complete: false,
-      },
     ];
 
     const defaultUnits = [
@@ -116,9 +103,18 @@ router.post("/signup", async (req, res) => {
       },
     ];
 
+    const defaultExams = [
+      {
+        examName: "finalExam",
+        examId: "final",
+        userName: username,
+        progress: 0.0,
+      },
+    ];
     // Add the default lessons and units for the user to the database
     await Lesson.insertMany(defaultLessons); // Insert lessons
     await Unit.insertMany(defaultUnits); // Insert units
+    await Exam.insertMany(defaultExams);
 
     res.status(201).json({
       message: "User created successfully, lessons and units initialized",
