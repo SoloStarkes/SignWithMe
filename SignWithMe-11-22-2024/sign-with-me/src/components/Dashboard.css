@@ -5,7 +5,7 @@
 
 #main-title {
     font-size: 100px;
-    color: white;
+    color: black;
 }
 
 .completed-lessons-container {
@@ -13,5 +13,5 @@
 }
 
 .completed-units-container {
-    background-color: white;
+    background-color: black;
 }

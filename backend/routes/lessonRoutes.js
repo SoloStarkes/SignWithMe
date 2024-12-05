@@ -23,9 +23,7 @@ router.put("/update-lesson", async (req, res) => {
       return res.status(404).json({ message: "Lesson not found" });
     }
 
-    res
-      .status(200)
-      .json({ message: "Lesson updated successfully", updatedLesson });
+    res.status(200).json({ message: "Lesson updated successfully", updatedLesson });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error", error });

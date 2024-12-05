@@ -1,5 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import React, {useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
+import axios from "axios";
+import {jwtDecode} from "jwt-decode"; // Import Link from react-router-dom
 
 function QuizCompletion({ score, totalQuestions }) {
   return (
@@ -9,7 +11,7 @@ function QuizCompletion({ score, totalQuestions }) {
       {/* <p>Your progress has been saved.</p> */}
       <p>Your score: {score} out of {totalQuestions}</p>
       <button 
-        onClick={() => {/* Navigate to next lesson */}}
+        onClick={() => {/* if last lesson, move to next unit, else reutrn the next lesson*/}}
         style={{ marginTop: '20px', padding: '10px', fontSize: '16px', cursor: 'pointer' }}
       >
         Move to Next Lesson
@@ -23,7 +25,7 @@ function QuizCompletion({ score, totalQuestions }) {
       >
         Save Progress and Return Home
       </button> */}
-            <Link 
+            <Link
         to="/units" 
         style={{ 
           display: 'inline-block',
