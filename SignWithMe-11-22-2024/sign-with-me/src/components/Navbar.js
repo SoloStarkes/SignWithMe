@@ -25,13 +25,9 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  const dashboardClick = () => {
-    navigate("/dashboard");
-  };
-
-  const translateClick = () => {
-    navigate("/translator");
-  };
+  // const translateClick = () => {
+  //   navigate("/translator");
+  // };
 
   return (
     <nav>
@@ -48,22 +44,17 @@ const Navbar = () => {
           <button className="navbar-button lessons-button" onClick={unitsClick}>
             Units
           </button>
-          <button
+          {/* <button
             className="navbar-button translator-button"
             onClick={translateClick}
           >
-            Translator Tool
-          </button>
+            Translator Tool */}
+          {/* </button> */}
           {isAuthenticated ? (
-            <>
-              <button className="navbar-button b-button" onClick={dashboardClick}>
-                Dashboard
-              </button>
-              <button className="navbar-button b-button" onClick={handleLogout}>
-                Logout
-              </button>
-            </>
-            ) : (
+            <button className="navbar-button b-button" onClick={handleLogout}>
+              Logout
+            </button>
+          ) : (
             <button className="navbar-button b-button" onClick={loginClick}>
               Login/Signup
             </button>

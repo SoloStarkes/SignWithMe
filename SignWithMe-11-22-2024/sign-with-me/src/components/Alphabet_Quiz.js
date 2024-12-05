@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import imageA from "../Letters/ASLAlphabetPoster_A.webp.png";
-import imageB from "../Letters/ASLAlphabetPoster_B.webp.png";
+// import imageA from "../Letters/ASLAlphabetPoster_A.webp.png";
+// import imageB from "../Letters/ASLAlphabetPoster_B.webp.png";
+import imageA from "../Letters/A_Cropped.png";
+import imageB from "../Letters/B_Cropped.png";
+
 import imageC from "../Letters/ASLAlphabetPoster_C.webp.png";
 import imageD from "../Letters/ASLAlphabetPoster_D.webp.png";
 import imageCAT from "../Letters/ASL_CAT.webp";
@@ -96,7 +99,7 @@ function Quiz() {
       const userName = localStorage.getItem("userName"); // Fetch logged-in user's username from localStorage
       const lessonId = "101"; // The lesson to check and update
       if (totalScore === 4) {
-        await axios.put("http://localhost:5000/api/lessons/update-lesson", {
+        await axios.put("http://localhost:5001/api/lessons/update-lesson", {
           lessonId: lessonId,
           userName: userName,
           quiz_complete: true,
@@ -176,21 +179,22 @@ function Quiz() {
             marginTop: "20px",
             fontSize: "18px",
             fontWeight: "bold",
-            color: "green",
+            color: "#177d17",
           }}
         >
           {feedback}
         </div>
       )}
-
+      <div style={{display:'block'}}>
       {currentQuestionIndex < currentData.length - 1 && (
         <button
           onClick={() => setCurrentQuestionIndex(currentQuestionIndex + 1)}
-          style={{ marginLeft: "21%", marginTop: "20px" }}
+          style={{ marginLeft: "21%", marginTop: "20px", position:'fixed' }}
         >
           Next Question
         </button>
       )}
+      </div>
 
       {isLevel1 && currentQuestionIndex === level1Data.length - 1 && (
         <button onClick={handleNextLevel} style={{ marginTop: "20px" }}>

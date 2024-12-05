@@ -1,8 +1,3 @@
-
-
-
-
-
 // import React, { useState, useEffect } from "react";
 
 // const DragAndDropASL = () => {
@@ -217,7 +212,7 @@ const DragAndDropASL = () => {
           id="current-noun-image"
           style={{ width: "700px", height: "400px" }}
         />
-        
+
       </div>
       <div id="drag-words">
         {nouns.map((noun) => (

@@ -1,7 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
-import axios from "axios";
-import {jwtDecode} from "jwt-decode"; // Import Link from react-router-dom
+import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 function QuizCompletion({ score, totalQuestions }) {
   return (
@@ -10,28 +8,28 @@ function QuizCompletion({ score, totalQuestions }) {
       <p>You have completed the ASL Quiz.</p>
       {/* <p>Your progress has been saved.</p> */}
       <p>Your score: {score} out of {totalQuestions}</p>
-      <button 
-        onClick={() => {/* if last lesson, move to next unit, else reutrn the next lesson*/}}
+      <button
+        onClick={() => {/* Navigate to next lesson */}}
         style={{ marginTop: '20px', padding: '10px', fontSize: '16px', cursor: 'pointer' }}
       >
         Move to Next Lesson
       </button>
 
-      {/* <button 
+      {/* <button
         onClick={() => {<Link to="src/UnitSet.js">{}</Link>
       }}
-        
+
         style={{ marginTop: '20px', padding: '10px', fontSize: '16px', cursor: 'pointer' }}
       >
         Save Progress and Return Home
       </button> */}
             <Link
-        to="/units" 
-        style={{ 
+        to="/units"
+        style={{
           display: 'inline-block',
-          marginTop: '20px', 
-          padding: '10px', 
-          fontSize: '16px', 
+          marginTop: '20px',
+          padding: '10px',
+          fontSize: '16px',
           cursor: 'pointer',
           backgroundColor: '#f0f0f0',
           color: 'black',

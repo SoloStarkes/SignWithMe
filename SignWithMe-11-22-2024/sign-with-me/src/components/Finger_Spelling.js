@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from "react";
 import "./Finger_Spelling.css";
 import axios from "axios"; // Make sure axios is imported
-import A from "../Letters/ASLAlphabetPoster_A.webp.png";
-import B from "../Letters/ASLAlphabetPoster_B.webp.png";
-import C from "../Letters/ASLAlphabetPoster_C.webp.png";
-import D from "../Letters/ASLAlphabetPoster_D.webp.png";
-import E from "../Letters/ASLAlphabetPoster_E.webp.png";
-import F from "../Letters/ASLAlphabetPoster_F.webp.png";
-import G from "../Letters/ASLAlphabetPoster_G.webp.png";
-import H from "../Letters/ASLAlphabetPoster_H.webp.png";
-import I from "../Letters/ASLAlphabetPoster_I.webp.png";
-import J from "../Letters/ASLAlphabetPoster_J.webp.png";
-import K from "../Letters/ASLAlphabetPoster_K.webp.png";
-import L from "../Letters/ASLAlphabetPoster_L.webp.png";
-import M from "../Letters/ASLAlphabetPoster_M.webp.png";
-import N from "../Letters/ASLAlphabetPoster_N.webp.png";
-import O from "../Letters/ASLAlphabetPoster_O.webp.png";
-import P from "../Letters/ASLAlphabetPoster_P.webp.png";
-import Q from "../Letters/ASLAlphabetPoster_Q.webp.png";
-import R from "../Letters/ASLAlphabetPoster_R.webp.png";
-import S from "../Letters/ASLAlphabetPoster_S.webp.png";
-import T from "../Letters/ASLAlphabetPoster_T.webp.png";
-import U from "../Letters/ASLAlphabetPoster_U.webp.png";
-import V from "../Letters/ASLAlphabetPoster_V.webp.png";
-import W from "../Letters/ASLAlphabetPoster_W.webp.png";
-import X from "../Letters/ASLAlphabetPoster_X.webp.png";
-import Y from "../Letters/ASLAlphabetPoster_Y.webp.png";
-import Z from "../Letters/ASLAlphabetPoster_Z.webp.png";
+import A from "../Letters/A_Cropped.png";
+import B from "../Letters/B_Cropped.png";
+import C from "../Letters/C_Cropped.png";
+import D from "../Letters/D_Cropped.png";
+import E from "../Letters/E_Cropped.png";
+import F from "../Letters/F_Cropped.png";
+import G from "../Letters/G_Cropped.png";
+import H from "../Letters/H_Cropped.png";
+import I from "../Letters/I_Cropped.png";
+import J from "../Letters/J_Cropped.png";
+import K from "../Letters/K_Cropped.png";
+import L from "../Letters/L_Cropped.png";
+import M from "../Letters/M_Cropped.png";
+import N from "../Letters/N_Cropped.png";
+import O from "../Letters/O_Cropped.png";
+import P from "../Letters/P_Cropped.png";
+import Q from "../Letters/Q_Cropped.png";
+import R from "../Letters/R_Cropped.png";
+import S from "../Letters/S_Cropped.png";
+import T from "../Letters/T_Cropped.png";
+import U from "../Letters/U_Cropped.png";
+import V from "../Letters/V_Cropped.png";
+import W from "../Letters/W_Cropped.png";
+import X from "../Letters/X_Cropped.png";
+import Y from "../Letters/Y_Cropped.png";
+import Z from "../Letters/Z_Cropped.png";
 
 const words = ["BAT", "MORNING", "ORANGE"]; // Target words
 
@@ -104,7 +104,7 @@ const Finger_Spelling = () => {
           if (userName) {
             // Send a PUT request to update the lesson with quiz_complete = true
             axios
-              .put("http://localhost:5000/api/lessons/update-lesson", {
+              .put("http://localhost:5001/api/lessons/update-lesson", {
                 lessonId: "102",
                 userName: userName,
                 quiz_complete: true,
@@ -191,8 +191,8 @@ const Finger_Spelling = () => {
   return (
     <div>
       <header>
-        <h1>ASL Drag-and-Drop Game</h1>
-        <p>Drag the ASL signs to the correct boxes to spell the word!</p>
+      <h1 style={{color:'white'}}>ASL Drag-and-Drop Game</h1>
+        <p style={{color:'white'}}>Drag the ASL signs to the correct boxes to spell the word!</p>
       </header>
       <main>
         <div id="target-word-container">

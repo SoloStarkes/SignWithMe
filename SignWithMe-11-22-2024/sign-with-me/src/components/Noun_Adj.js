@@ -8,7 +8,7 @@ function Noun_Adj() {
   return (
     <div>
       <header>
-        <h1 style={{color:'black'}}>ASL Nouns and Adjective Lessons</h1>
+        <h1 style={{color:'white'}}>ASL Nouns and Adjective Lessons</h1>
         {/* <nav>
           <a style={{padding:'3px',color:'black',fontSize:'20px',fontWeight:'bold',backgroundColor:'rgb(206 136 249)',borderRadius:'5px'}} href="index.html">Home</a>
         </nav> */}
@@ -17,8 +17,8 @@ function Noun_Adj() {
       <main>
         <section>
           <h2>Nouns</h2>
-          <p><strong>
-            Nouns are words that represent a person, place, or thing. In ASL, nouns are often signed using distinct handshapes and repeated movements. 
+          <p style={{fontSize:'20px'}}><strong>
+            Nouns are words that represent a person, place, or thing. In ASL, nouns are often signed using distinct handshapes and repeated movements.
             Watch these examples of ASL signs for nouns:
             </strong>
           </p>
@@ -66,7 +66,7 @@ function Noun_Adj() {
 
         <section>
           <h2>Adjectives</h2>
-          <p>
+          <p style={{fontSize:'20px'}}>
             <strong>
             Adjectives describe nouns by providing more information about their size, color, or condition. In ASL, adjectives are often shown with expressive facial gestures and dynamic hand movements.
             Watch these examples of ASL signs for adjectives:

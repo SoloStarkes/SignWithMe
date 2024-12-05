@@ -31,7 +31,7 @@ const Greetings = () => {
     if (userName) {
       // Send a PUT request to update the lesson with quiz_complete = true
       axios
-        .put("http://localhost:5000/api/lessons/update-lesson", {
+        .put("http://localhost:5001/api/lessons/update-lesson", {
           lessonId: "103",
           userName: userName,
           quiz_complete: true,
@@ -51,8 +51,8 @@ const Greetings = () => {
   return (
     <div>
       <header>
-        <h1>Let's Practice ASL Greetings!</h1>
-        <p>
+        <h1 style={{color:'white'}}>Let's Practice ASL Greetings!</h1>
+        <p style={{color:'white'}}>
           Learn and practice American Sign Language (ASL) greetings with tips
           and visual aids!
         </p>

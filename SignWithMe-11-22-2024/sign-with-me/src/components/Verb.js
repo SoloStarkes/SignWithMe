@@ -14,8 +14,8 @@ import { useNavigate } from "react-router-dom";
 const VerbsPage = ({ navigate }) => {
   return (
     <section>
-      <h1 style={{ color: "black" }}>Learn ASL - Verbs</h1>
-      <p style={{ paddingLeft: "25%", fontSize: "24px" }}>
+      <h1 style={{color:'white'}}>Learn ASL - Verbs</h1>
+      <p style={{ paddingLeft: "25%", fontSize: "24px", color:'white' }}>
         In ASL, verbs can appear at the beginning, middle, or end of a sentence,
         depending on the emphasis.
       </p>
@@ -23,7 +23,7 @@ const VerbsPage = ({ navigate }) => {
       <div className="tense-section">
         <h2>Present Tense</h2>
         <div className="tense-content">
-          <p>
+          <p style={{ fontSize: "24px" }}>
             <strong>
               Signing in present tense is simple — you sign close to your body,
               just like in a normal conversation.
@@ -40,7 +40,7 @@ const VerbsPage = ({ navigate }) => {
       <div className="tense-section">
         <h2>Past Tense</h2>
         <div className="tense-content">
-          <p>
+          <p style={{ fontSize: "24px" }}>
             <strong>
               Signing in past tense is done by signing <strong>finish</strong>{" "}
               at chest level at the beginning or end of the sentence.
@@ -53,14 +53,14 @@ const VerbsPage = ({ navigate }) => {
       <div className="tense-section">
         <h2>Future Tense</h2>
         <div className="tense-content">
-          <p>
+          <p style={{ fontSize: "24px" }}>
             <strong>
               For future tense, sign and say <strong>will</strong> at the end of
               the sentence. Signing farther away indicates a more distant
               future.
             </strong>
           </p>
-          <ul>
+          <ul style={{ fontSize: "20px" , color:'black'}}>
             <strong>
               <li>
                 English: He can go later. <br /> Sign: HE GO — WILL

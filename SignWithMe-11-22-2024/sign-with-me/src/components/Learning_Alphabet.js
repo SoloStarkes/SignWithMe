@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './Learning_Alphabet.css';
@@ -70,15 +68,15 @@ function Unit1() {
     };
 
     const handleStartQuiz = () => {
-        navigate('/quiz?assignment=' + encodeURIComponent(assignment));    
+        navigate('/quiz?assignment=' + encodeURIComponent(assignment));
     };
 
     return (
       <>
       <div className="alphabet-container">
 
-        <h1>ASL Alphabet</h1>
-        <p>Current Assignment: {"Learning ASL Alphabet"}</p>
+        <h1 style={{color:'white'}}>ASL Alphabet</h1>
+        <p style={{color:'white'}}>Current Assignment: {"Learning ASL Alphabet"}</p>
 
         <div className="letter">
           <img className="image" ref={aslImageRef} alt="ASL Letter" />

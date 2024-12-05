@@ -9,20 +9,20 @@
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  
+
   /* Adjective Quiz Section */
   .adjective-quiz h2, .translation-quiz h2 {
     font-size: 1.8rem;
     margin-bottom: 20px;
     color: #333;
   }
-  
+
   .sentence {
     font-size: 1.2rem;
     color: #555;
     margin-bottom: 15px;
   }
-  
+
   .quiz-video {
     width: 100%;
     max-width: 300px;
@@ -30,7 +30,7 @@
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
-  
+
   /* Options Container */
   .options-container {
     display: flex;
@@ -39,7 +39,7 @@
     gap: 10px;
     margin-top: 20px;
   }
-  
+
   .option-button {
     padding: 10px 15px;
     font-size: 1rem;
@@ -50,26 +50,26 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  
+
   .option-button:hover {
     background-color: #0056b3;
   }
-  
+
   /* Feedback Section */
   .feedback {
     margin-top: 20px;
     font-size: 1rem;
     color: #333;
   }
-  
+
   .feedback.correct {
     color: #28a745;
   }
-  
+
   .feedback.incorrect {
     color: #dc3545;
   }
-  
+
   /* Next Button */
   .next-button {
     margin-top: 20px;
@@ -82,21 +82,21 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  
+
   .next-button:hover {
     background-color: #218838;
   }
-  
+
   /* Translation Quiz Section */
   .translation-quiz {
     margin-top: 20px;
   }
-  
+
   .english-sentence {
     font-size: 1.2rem;
     margin-bottom: 15px;
   }
-  
+
   .translation-input {
     padding: 10px;
     font-size: 1rem;
@@ -105,7 +105,7 @@
     width: 80%;
     margin-bottom: 15px;
   }
-  
+
   .submit-button {
     padding: 10px 15px;
     font-size: 1rem;
@@ -116,8 +116,9 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  
+
   .submit-button:hover {
     background-color: #0056b3;
   }
+
   

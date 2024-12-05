@@ -246,20 +246,27 @@ const UnitSet = () => {
                   <span style={{ color: "green", fontSize: "1.5rem" }}>✔</span>
                 )} */}
               </Link>
-              <Link to="/units/lesson5/N_A" className="lesson-link">
-                Nouns and Adjectives{" "}
-                {/* {quizCompletedFinger && (
-                  <span style={{ color: "green", fontSize: "1.5rem" }}>✔</span>
-                )} */}
-              </Link>
-              <Link to="/units/lesson6" className="lesson-link">
-                Verbs and Colors{" "}
-                {/* {quizCompletedGreetings && (
-                  <span style={{ color: "green", fontSize: "1.5rem" }}>✔</span>
-                )} */}
-              </Link>
+
             </div>
           )}
+        </div>
+
+        {/* Final */}
+        <div>
+          <button onClick={() => toggleUnit(4)} className="unit-button">
+            Final Examination
+          </button>
+          {openUnit === 4 && (
+            <div className="lesson-dropdown">
+              <Link to="/units/Final" className="lesson-link">
+                Final Exam{" "}
+              {quizCompletedAlpha && (
+                <span style={{ color: "green", fontSize: "1.5rem" }}>✔</span>
+              )}
+            </Link>
+
+          </div>
+        )}
         </div>
       </div>
     </div>
