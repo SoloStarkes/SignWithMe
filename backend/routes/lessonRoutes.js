@@ -4,32 +4,6 @@ const express = require("express");
 const router = express.Router();
 const Lesson = require("../models/Lesson"); // Import your lesson model
 
-// Update lesson route
-router.put("/update-lesson", async (req, res) => {
-  const { lessonId, userName, quiz_complete } = req.body;
-
-  try {
-    // Log the request body for debugging
-    console.log("Request Body:", req.body);
-
-    // Find and update the lesson
-    const updatedLesson = await Lesson.findOneAndUpdate(
-      { lessonId, userName },
-      { quiz_complete },
-      { new: true } // Return the updated document
-    );
-
-    if (!updatedLesson) {
-      return res.status(404).json({ message: "Lesson not found" });
-    }
-
-    res.status(200).json({ message: "Lesson updated successfully", updatedLesson });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server error", error });
-  }
-});
-
 // Get lesson route (retrieve lesson based on lessonId and userName)
 router.get("/get-lesson", async (req, res) => {
   const { lessonId, userName } = req.query;
@@ -60,6 +34,7 @@ router.get("/get-lesson", async (req, res) => {
   }
 });
 
+// Get all the lessons and progress for a user
 router.get("/get-lessons", async (req, res) => {
   const userName  = req.query.userName;
   let lessons;
@@ -76,5 +51,31 @@ router.get("/get-lessons", async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 })
+
+// Update lesson route
+router.put("/update-lesson", async (req, res) => {
+  const { lessonId, userName, quiz_complete } = req.body;
+
+  try {
+    // Log the request body for debugging
+    console.log("Request Body:", req.body);
+
+    // Find and update the lesson
+    const updatedLesson = await Lesson.findOneAndUpdate(
+      { lessonId, userName },
+      { quiz_complete },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedLesson) {
+      return res.status(404).json({ message: "Lesson not found" });
+    }
+
+    res.status(200).json({ message: "Lesson updated successfully", updatedLesson });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error", error });
+  }
+});
 
 module.exports = router;
