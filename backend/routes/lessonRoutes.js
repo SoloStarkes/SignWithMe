@@ -2,7 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
-const Lesson = require("../models/Lesson"); // Import your lesson model
+const Lesson = require("../models/lesson"); // Import your lesson model
 
 // Update lesson route
 router.put("/update-lesson", async (req, res) => {
