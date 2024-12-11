@@ -25,7 +25,6 @@ import Numbers from "./components/Numbers";
 import Number_Quiz from "./components/Number_Quiz";
 import Final from "./components/Final";
 
-
 function App() {
   const [message, setMessage] = useState("");
 
@@ -73,7 +72,6 @@ function App() {
           <Route path="/units/lesson7" element={<Numbers />} />
           <Route path="/units/lesson7/quiz" element={<Number_Quiz />} />
           <Route path="/units/Final" element={<Final />} />
-
         </Routes>
       </BrowserRouter>
       {/* <Footer /> */}

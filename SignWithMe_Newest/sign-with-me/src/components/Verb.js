@@ -14,8 +14,8 @@ import { useNavigate } from "react-router-dom";
 const VerbsPage = ({ navigate }) => {
   return (
     <section>
-      <h1 style={{color:'white'}}>Learn ASL - Verbs</h1>
-      <p style={{ paddingLeft: "25%", fontSize: "24px", color:'white' }}>
+      <h1 style={{ color: "white" }}>Learn ASL - Verbs</h1>
+      <p style={{ paddingLeft: "25%", fontSize: "24px", color: "white" }}>
         In ASL, verbs can appear at the beginning, middle, or end of a sentence,
         depending on the emphasis.
       </p>
@@ -60,7 +60,7 @@ const VerbsPage = ({ navigate }) => {
               future.
             </strong>
           </p>
-          <ul style={{ fontSize: "20px" , color:'black'}}>
+          <ul style={{ fontSize: "20px", color: "black" }}>
             <strong>
               <li>
                 English: He can go later. <br /> Sign: HE GO — WILL

@@ -38,7 +38,7 @@ const Grammar = () => {
   return (
     <div>
       <header>
-        <h1 style={{color:'white'}}>ASL Vocabulary and Grammar</h1>
+        <h1 style={{ color: "white" }}>ASL Vocabulary and Grammar</h1>
         <nav>
           {/* <a href="/grammar">Grammar Rules</a> */}
           <a
@@ -85,8 +85,10 @@ const Grammar = () => {
         <section>
           <h2 style={{ color: "black" }}>ASL Grammar Rules</h2>
           <article>
-            <h3 style={{ color: "black",fontSize:'30px'  }}>1. Topic-Comment Structure</h3>
-            <p style={{fontSize:'25px'}}>
+            <h3 style={{ color: "black", fontSize: "30px" }}>
+              1. Topic-Comment Structure
+            </h3>
+            <p style={{ fontSize: "25px" }}>
               ASL sentences often follow a topic-comment structure. The main
               topic is introduced first, followed by a comment or action related
               to the topic.
@@ -95,8 +97,10 @@ const Grammar = () => {
           </article>
 
           <article>
-            <h3 style={{ color: "black" ,fontSize:'30px' }}>2. Facial Expressions</h3>
-            <p style={{fontSize:'25px'}}>
+            <h3 style={{ color: "black", fontSize: "30px" }}>
+              2. Facial Expressions
+            </h3>
+            <p style={{ fontSize: "25px" }}>
               Facial expressions are a critical part of ASL grammar. They
               provide context, tone, and emphasis. For example, raising eyebrows
               indicates a yes/no question.
@@ -104,8 +108,10 @@ const Grammar = () => {
           </article>
 
           <article>
-            <h3 style={{ color: "black" ,fontSize:'30px' }}>3. Time Indicators</h3>
-            <p style={{fontSize:'25px'}}>
+            <h3 style={{ color: "black", fontSize: "30px" }}>
+              3. Time Indicators
+            </h3>
+            <p style={{ fontSize: "25px" }}>
               Time is specified at the beginning of a sentence. This helps
               establish the tense of the conversation.
               <strong> Example:</strong> "YESTERDAY STORE I GO"
@@ -113,8 +119,10 @@ const Grammar = () => {
           </article>
 
           <article>
-            <h3 style={{ color: "black" ,fontSize:'30px' }}>4. Subject-Verb Agreement</h3>
-            <p style={{fontSize:'25px'}}>
+            <h3 style={{ color: "black", fontSize: "30px" }}>
+              4. Subject-Verb Agreement
+            </h3>
+            <p style={{ fontSize: "25px" }}>
               Verbs in ASL can show who is performing and receiving the action.
               This is often done through directional signs.
               <strong> Example:</strong> "I-GIVE-YOU" vs. "YOU-GIVE-ME"
@@ -122,28 +130,12 @@ const Grammar = () => {
           </article>
 
           <article>
-            <h3 style={{ color: "black" ,fontSize:'30px' }}>5. Classifiers</h3>
-            <p style={{fontSize:'25px'}}>
+            <h3 style={{ color: "black", fontSize: "30px" }}>5. Classifiers</h3>
+            <p style={{ fontSize: "25px" }}>
               Classifiers are handshapes that represent objects, actions, or
               people. They provide more detail about size, shape, or movement.
             </p>
           </article>
-          {/* People Slideshow */}
-          {/* {/* <section> */}
-          {/* <h2>People Slideshow</h2>
-          <div>
-            <button onClick={() => updateSlide(peopleImages, peopleIndex, setPeopleIndex, -1)}>Previous</button>
-            <img
-              src={peopleImages[peopleIndex].src}
-              alt={peopleImages[peopleIndex].alt}
-            />
-            <button onClick={() => updateSlide(peopleImages, peopleIndex, setPeopleIndex, 1)}>Next</button>
-          </div> */}
-          {/* </section> */}
-
-          {/* Feelings Slideshow */}
-          {/* {/* <section> */}
-          {/* </section> */}
         </section>
       </main>
     </div>

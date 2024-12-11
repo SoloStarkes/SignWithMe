@@ -185,15 +185,15 @@ function Quiz() {
           {feedback}
         </div>
       )}
-      <div style={{display:'block'}}>
-      {currentQuestionIndex < currentData.length - 1 && (
-        <button
-          onClick={() => setCurrentQuestionIndex(currentQuestionIndex + 1)}
-          style={{ marginLeft: "21%", marginTop: "20px", position:'fixed' }}
-        >
-          Next Question
-        </button>
-      )}
+      <div style={{ display: "block" }}>
+        {currentQuestionIndex < currentData.length - 1 && (
+          <button
+            onClick={() => setCurrentQuestionIndex(currentQuestionIndex + 1)}
+            style={{ marginLeft: "21%", marginTop: "20px", position: "fixed" }}
+          >
+            Next Question
+          </button>
+        )}
       </div>
 
       {isLevel1 && currentQuestionIndex === level1Data.length - 1 && (
