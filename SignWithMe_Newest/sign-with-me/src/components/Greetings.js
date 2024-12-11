@@ -51,8 +51,8 @@ const Greetings = () => {
   return (
     <div>
       <header>
-        <h1 style={{color:'white'}}>Let's Practice ASL Greetings!</h1>
-        <p style={{color:'white'}}>
+        <h1 style={{ color: "white" }}>Let's Practice ASL Greetings!</h1>
+        <p style={{ color: "white" }}>
           Learn and practice American Sign Language (ASL) greetings with tips
           and visual aids!
         </p>

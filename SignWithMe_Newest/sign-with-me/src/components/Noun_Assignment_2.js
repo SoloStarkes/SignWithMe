@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"; // Import if using react-router-dom
-import "./N_Assignment2.css"
+import "./N_Assignment2.css";
 const ASLTranslationPractice = () => {
   const aslSigns = [
-    { images: ["https://www.youtube.com/embed/uKAKaQG5FTI"], word: "Is your house big?" },
-    { images: ["https://www.youtube.com/embed/c1fJX4uQvLY"], word: "In what city do you live?" },
-    { images: ["https://media.giphy.com/media/LI7i6crQp5ffHyrosY/giphy.gif"], word: "CAT" },
+    {
+      images: ["https://www.youtube.com/embed/uKAKaQG5FTI"],
+      word: "Is your house big?",
+    },
+    {
+      images: ["https://www.youtube.com/embed/c1fJX4uQvLY"],
+      word: "In what city do you live?",
+    },
+    {
+      images: ["https://media.giphy.com/media/LI7i6crQp5ffHyrosY/giphy.gif"],
+      word: "CAT",
+    },
   ];
 
   const [currentSign, setCurrentSign] = useState(0);
@@ -35,8 +44,11 @@ const ASLTranslationPractice = () => {
   return (
     <div>
       <h1>ASL Translation Practice</h1>
-      <Link to="/units/lesson5/N_A" style={{ marginRight: "10px", textDecoration: "none" }}>
-            <button>Go to Noun Page</button>
+      <Link
+        to="/units/lesson5/N_A"
+        style={{ marginRight: "10px", textDecoration: "none" }}
+      >
+        <button>Go to Noun Page</button>
       </Link>
 
       <div id="asl-container">
@@ -65,7 +77,9 @@ const ASLTranslationPractice = () => {
           value={aslInput}
           onChange={(e) => setAslInput(e.target.value)}
         />
-        <button className = "Back_Button" onClick={checkASL}>Submit</button>
+        <button className="Back_Button" onClick={checkASL}>
+          Submit
+        </button>
         <p id="asl-feedback">{aslFeedback}</p>
       </div>
     </div>

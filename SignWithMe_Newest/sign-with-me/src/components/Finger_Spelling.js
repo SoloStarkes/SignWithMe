@@ -191,8 +191,10 @@ const Finger_Spelling = () => {
   return (
     <div>
       <header>
-      <h1 style={{color:'white'}}>ASL Drag-and-Drop Game</h1>
-        <p style={{color:'white'}}>Drag the ASL signs to the correct boxes to spell the word!</p>
+        <h1 style={{ color: "white" }}>ASL Drag-and-Drop Game</h1>
+        <p style={{ color: "white" }}>
+          Drag the ASL signs to the correct boxes to spell the word!
+        </p>
       </header>
       <main>
         <div id="target-word-container">
