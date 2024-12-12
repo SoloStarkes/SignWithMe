@@ -32,6 +32,7 @@ app.use(helmet({
 app.use(express.json());
 
 // Connect to MongoDB
+console.log(process.env.DATABASE_CONNECTION_STRING)
 mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
