@@ -15,7 +15,7 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://backend-sign-with-me-gamma.vercel.app/api/signin", {
+      const response = await axios.post("https://backend-sign-with-me-gamma.vercel.app/api/signin", {
         username,
         password,
       });

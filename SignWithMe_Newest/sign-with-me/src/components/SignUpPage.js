@@ -21,7 +21,7 @@ const SignUpPage = () => {
     } else {
       try {
         // Send sign-up request to the backend
-        await axios.post("http://backend-sign-with-me-gamma.vercel.app/api/signup", {
+        await axios.post("https://backend-sign-with-me-gamma.vercel.app/api/signup", {
           username,
           email,
           password,
@@ -29,7 +29,7 @@ const SignUpPage = () => {
         setMessage("User created successfully");
 
         // After sign-up, log the user in automatically
-        const response = await axios.post("http://backend-sign-with-me-gamma.vercel.app/api/signin", {
+        const response = await axios.post("https://backend-sign-with-me-gamma.vercel.app/api/signin", {
           username,
           password,
         });
