@@ -1,5 +1,3 @@
-// Assuming you're using express and mongoose
-
 const express = require("express");
 const router = express.Router();
 
@@ -13,9 +11,9 @@ router.put("/update-lesson", async (req, res) => {
 
    // Find and update the lesson
    const updatedLesson = await req.app.locals.db.collection("lessons").findOneAndUpdate(
-     { lessonId, userName },
+     { lessonId: parseInt(lessonId), userName },
      { $set: { quiz_complete } },
-     { returnDocument: 'after' } // Return the updated document
+     { returnDocument: 'after' }
    );
 
    if (!updatedLesson) {
@@ -39,7 +37,10 @@ router.get("/get-lesson", async (req, res) => {
    console.log("Request Query:", req.query); // Log incoming query params
 
    // Find the lesson by lessonId and userName
-   const lesson = await req.app.locals.db.collection("lessons").findOne({ lessonId, userName });
+   const lesson = await req.app.locals.db.collection("lessons").findOne({
+                            lessonId: parseInt(lessonId), // or Number(lessonId)
+                          userName
+   });
 
    if (!lesson) {
      console.log(
