@@ -1,41 +1,42 @@
-const mongoose = require("mongoose");
+const { MongoClient } = require('mongodb');
 
 // Define the lesson schema
-const lessonSchema = new mongoose.Schema(
-  {
-    lessonId: {
-      type: String,
-      required: true,
-    },
-    lessonName: {
-      type: String,
-      required: true,
-    },
-    unitId: {
-      type: String,
-      required: true,
-    },
-    userName: {
-      type: String,
-      required: true,
-    },
-    quiz_complete: {
-      type: Boolean,
-      default: false, // Default value is false
-    },
-  },
-  {
-    // Create a compound index for lessonId and userName combination
-    indexes: [
-      {
-        fields: { lessonId: 1, userName: 1 },
-        unique: true, // Ensures that lessonId + userName is unique
-      },
-    ],
-  }
-);
+const lessonCollection = {
+   validator: {
+       $jsonSchema: {
+           bsonType: "object",
+           required: ["lessonId", "lessonName", "unitId", "userName"],
+           properties: {
+               lessonId: {
+                   bsonType: "string",
+                   description: "must be a string and is required"
+               },
+               lessonName: {
+                   bsonType: "string",
+                   description: "must be a string and is required"
+               },
+               unitId: {
+                   bsonType: "string",
+                   description: "must be a string and is required"
+               },
+               userName: {
+                   bsonType: "string",
+                   description: "must be a string and is required"
+               },
+               quiz_complete: {
+                   bsonType: "bool",
+                   description: "must be a boolean",
+                   default: false
+               }
+           }
+       }
+   },
+   indexes: [
+       {
+           fields: { lessonId: 1, userName: 1 },
+           unique: true,
+       }
+   ]
+};
 
-// Create a model for the lesson schema
-const Lesson = mongoose.models.Lesson || mongoose.model("Lesson", lessonSchema);
-
-module.exports = Lesson;
+module.exports = lessonCollection;

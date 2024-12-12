@@ -1,37 +1,38 @@
-const mongoose = require("mongoose");
+const { MongoClient } = require('mongodb');
 
 // Define the lesson schema
-const examSchema = new mongoose.Schema(
-  {
-    examId: {
-      type: String,
-      required: true,
-    },
-    examName: {
-      type: String,
-      required: true,
-    },
-    userName: {
-      type: String,
-      required: true,
-    },
-    progress: {
-      type: Number,
-      default: 0.0, // Default value is false
-    },
-  },
-  {
-    // Create a compound index for lessonId and userName combination
-    indexes: [
-      {
-        fields: { examId: 1, userName: 1 },
-        unique: true, // Ensures that lessonId + userName is unique
-      },
-    ],
-  }
-);
+const examCollection = {
+   validator: {
+       $jsonSchema: {
+           bsonType: "object",
+           required: ["examId", "examName", "userName"],
+           properties: {
+               examId: {
+                   bsonType: "string",
+                   description: "must be a string and is required"
+               },
+               examName: {
+                   bsonType: "string",
+                   description: "must be a string and is required"
+               },
+               userName: {
+                   bsonType: "string",
+                   description: "must be a string and is required"
+               },
+               progress: {
+                   bsonType: "double",
+                   description: "must be a double",
+                   default: 0.0
+               }
+           }
+       }
+   },
+   indexes: [
+       {
+           fields: { examId: 1, userName: 1 },
+           unique: true,
+       }
+   ]
+};
 
-// Create a model for the lesson schema
-const Exam = mongoose.models.Exam || mongoose.model("Exam", examSchema);
-
-module.exports = Exam;
+module.exports = examCollection;

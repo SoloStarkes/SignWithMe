@@ -1,11 +1,37 @@
-const mongoose = require("mongoose");
+const { MongoClient } = require('mongodb');
 
 // Define the User schema
-const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-});
+const userCollection = {
+   validator: {
+       $jsonSchema: {
+           bsonType: "object",
+           required: ["username", "email", "password"],
+           properties: {
+               username: {
+                   bsonType: "string",
+                   description: "must be a string and is required"
+               },
+               email: {
+                   bsonType: "string",
+                   description: "must be a string and is required"
+               },
+               password: {
+                   bsonType: "string",
+                   description: "must be a string and is required"
+               }
+           }
+       }
+   },
+   indexes: [
+       {
+           fields: { username: 1 },
+           unique: true,
+       },
+       {
+           fields: { email: 1 },
+           unique: true,
+       }
+   ]
+};
 
-// Export the User model
-module.exports = mongoose.model("User", userSchema);
+module.exports = userCollection;
