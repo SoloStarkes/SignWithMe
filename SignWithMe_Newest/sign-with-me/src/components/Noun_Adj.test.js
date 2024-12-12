@@ -1,66 +1,57 @@
+import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Noun_Adj from './Noun_Adj';
 import '@testing-library/jest-dom';
+import Noun_Adj from './Noun_Adj';
 
 describe('Noun_Adj Component', () => {
-  test('renders the header', () => {
-    render(<Noun_Adj />);
-    const header = screen.getByText(/ASL Nouns and Adjective Lessons/i);
-    expect(header).toBeInTheDocument();
+  beforeEach(() => {
+    delete window.location; // Delete the existing window.location
+    window.location = { href: '' }; // Mock window.location
   });
 
-  test('renders noun section and video links', () => {
+  test('renders the header correctly', () => {
     render(<Noun_Adj />);
-    
-    // Check for the noun section header
-    const nounHeader = screen.getByText(/Nouns/i);
-    expect(nounHeader).toBeInTheDocument();
-
-    // Check for iframe elements in the noun section
-    const nounVideos = screen.getAllByTitle(/Dog Sign ASL|House Sign ASL|Cat Sign ASL/i);
-    expect(nounVideos).toHaveLength(3);
+    const headerElement = screen.getByText('ASL Nouns and Adjective Lessons');
+    expect(headerElement).toBeInTheDocument();
+    expect(headerElement).toHaveStyle('color: white');
   });
 
-  test('renders adjective section and video links', () => {
+  test('renders the Nouns section', () => {
     render(<Noun_Adj />);
-
-    // Check for the adjective section header
-    const adjHeader = screen.getByText(/Adjectives/i);
-    expect(adjHeader).toBeInTheDocument();
-
-    // Check for iframe elements in the adjective section
-    const adjVideos = screen.getAllByTitle(/Adjective Sign ASL/i);
-    expect(adjVideos).toHaveLength(3);
+    expect(screen.getByText('Nouns')).toBeInTheDocument();
+    expect(screen.getByText(/Nouns are words that represent a person, place, or thing./)).toBeInTheDocument();
   });
 
-  test('renders buttons and handles navigation', () => {
-    const { getByText } = render(<Noun_Adj />);
-    
-    // Noun buttons
-    const nounButton1 = getByText(/Go to Drag and Drop Noun Excercise/i);
-    const nounButton2 = getByText(/Go to Translation Noun Excercise/i);
-    expect(nounButton1).toBeInTheDocument();
-    expect(nounButton2).toBeInTheDocument();
-
-    // Adjective button
-    const adjButton = getByText(/Go to Adjective Assignment/i);
-    expect(adjButton).toBeInTheDocument();
+  test('renders the Adjectives section', () => {
+    render(<Noun_Adj />);
+    expect(screen.getByText('Adjectives')).toBeInTheDocument();
+    expect(screen.getByText(/Adjectives describe nouns by providing more information/)).toBeInTheDocument();
   });
 
-  test('simulates button navigation', () => {
-    delete window.location;
-    window.location = { href: '' };
-
+  test('renders iframe elements', () => {
     render(<Noun_Adj />);
+    const iframes = screen.getAllByTitle(/Sign ASL/);
+    expect(iframes).toHaveLength(6); // Adjust this based on your actual iframes
+  });
 
-    // Simulate click on Drag and Drop Noun Exercise button
-    const nounButton = screen.getByText(/Go to Drag and Drop Noun Excercise/i);
-    fireEvent.click(nounButton);
+  test('navigates to Noun Assignment 1 when button is clicked', () => {
+    render(<Noun_Adj />);
+    const button = screen.getByText('Go to Drag and Drop Noun Excercise');
+    fireEvent.click(button);
     expect(window.location.href).toBe('/units/lesson5/N_A/Noun_Assigment1');
+  });
 
-    // Simulate click on Adjective Assignment button
-    const adjButton = screen.getByText(/Go to Adjective Assignment/i);
-    fireEvent.click(adjButton);
+  test('navigates to Noun Assignment 2 when button is clicked', () => {
+    render(<Noun_Adj />);
+    const button = screen.getByText('Go to Translation Noun Excercise');
+    fireEvent.click(button);
+    expect(window.location.href).toBe('/units/lesson5/N_A/Noun_Assigment2');
+  });
+
+  test('navigates to Adjective Assignment when button is clicked', () => {
+    render(<Noun_Adj />);
+    const button = screen.getByText('Go to Adjective Assignment');
+    fireEvent.click(button);
     expect(window.location.href).toBe('/units/lesson5/N_A/Adj_Assigment');
   });
 });
