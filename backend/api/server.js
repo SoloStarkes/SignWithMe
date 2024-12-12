@@ -16,8 +16,12 @@ app.use(bodyParser.json());
 const port = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: ["https://sign-with-me.vercel.app"],
-  credentials: true
+  origin: "https://sign-with-me.vercel.app",
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-access-token', 'Origin', 'Accept'],
+  exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar'],
+  maxAge: 86400
 }));
 app.use(express.json());
 
