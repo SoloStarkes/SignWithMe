@@ -11,7 +11,7 @@ router.put("/update-lesson", async (req, res) => {
 
    // Find and update the lesson
    const updatedLesson = await req.app.locals.db.collection("lessons").findOneAndUpdate(
-     { lessonId: lessonId, userName },
+     { lessonId: lessonId.toInt(), userName },
      { $set: { quiz_complete } },
      { returnDocument: 'after' }
    );
@@ -38,7 +38,7 @@ router.get("/get-lesson", async (req, res) => {
 
    // Find the lesson by lessonId and userName
    const lesson = await req.app.locals.db.collection("lessons").findOne({
-                            lessonId: parseInt(lessonId), // or Number(lessonId)
+                            lessonId: parseInt(lessonId),
                           userName
    });
 
