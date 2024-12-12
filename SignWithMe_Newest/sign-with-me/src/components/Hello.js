@@ -7,7 +7,7 @@ const Hello = () => {
   useEffect(() => {
     // Make sure the backend URL is correct (e.g., stored in .env)
     axios
-      .get("http://localhost:5000/api")
+      .get("https://backend-sign-with-me-gamma.vercel.app/api")
       .then((response) => {
         console.log(response); // Check the response structure in the console
         setMessage(response.data.message); // Assuming the backend returns a { message: '...' } object

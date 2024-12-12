@@ -62,7 +62,7 @@ const UnitSet = () => {
           .flat()
           .map(({ id, key }) =>
             axios
-              .get("http://localhost:5001/api/lessons/get-lesson", {
+              .get("https://backend-sign-with-me-gamma.vercel.app/api/lessons/get-lesson", {
                 params: { lessonId: id, userName },
               })
               .then((response) => {

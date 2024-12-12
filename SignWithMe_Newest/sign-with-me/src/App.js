@@ -31,7 +31,7 @@ function App() {
   useEffect(() => {
     // Fetch data from the backend
     axios
-      .get("http://localhost:5001/api")
+      .get("https://backend-sign-with-me-gamma.vercel.app/api")
       .then((response) => setMessage(response.data.message))
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
