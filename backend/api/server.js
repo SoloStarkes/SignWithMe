@@ -32,8 +32,8 @@ app.use(helmet({
 app.use(express.json());
 
 // Connect to MongoDB
-console.log(process.env.DATABASE_CONNECTION_STRING)
-mongoose.connect(process.env.DATABASE_CONNECTION_STRING, {
+//console.log(process.env.DATABASE_CONNECTION_STRIN)
+mongoose.connect("mongodb+srv://swm-user:swmUserF24@signwithmedb.gl283.mongodb.net/?retryWrites=true&w=majority&appName=signwithmedb", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
