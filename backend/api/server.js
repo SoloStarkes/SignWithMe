@@ -16,29 +16,19 @@ const app = express();
 app.use(bodyParser.json());
 const port = process.env.PORT || 5000;
 
+// Modified CORS config
 app.use(cors({
   origin: "https://sign-with-me.vercel.app",
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'x-access-token', 'Origin', 'Accept','Access-Control-Allow-Origin'],
-  exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar'],
-  maxAge: 86400
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// Modified helmet config
 app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://vercel.live"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", "data:", "https:"],
-      connectSrc: ["'self'", "https://vercel.live", "https://backend-sign-with-me-gamma.vercel.app"],
-      fontSrc: ["'self'"],
-      objectSrc: ["'none'"],
-      mediaSrc: ["'self'"],
-      frameSrc: ["'self'", "https://vercel.live"]
-    }
-  }
+  contentSecurityPolicy: false  // Temporarily disable CSP to debug
 }));
+
 app.use(express.json());
 
 // Connect to MongoDB
