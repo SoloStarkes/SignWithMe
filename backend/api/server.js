@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 const port = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: [""],
+  origin: ["https://sign-with-me.vercel.app"],
   methods: ["POST", "GET"],
   credentials: true
 }));
