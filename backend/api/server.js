@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const helmet = require('helmet');
 
 // Import the auth routes
 const authRoutes = require("../routes/authcall");
@@ -22,6 +23,21 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'x-access-token', 'Origin', 'Accept','Access-Control-Allow-Origin'],
   exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar'],
   maxAge: 86400
+}));
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://vercel.live"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:", "https:"],
+      connectSrc: ["'self'", "https://vercel.live", "https://backend-sign-with-me-gamma.vercel.app"],
+      fontSrc: ["'self'"],
+      objectSrc: ["'none'"],
+      mediaSrc: ["'self'"],
+      frameSrc: ["'self'", "https://vercel.live"]
+    }
+  }
 }));
 app.use(express.json());
 
