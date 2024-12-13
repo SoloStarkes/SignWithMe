@@ -105,11 +105,9 @@ const Finger_Spelling = () => {
             // Send a PUT request to update the lesson with quiz_complete = true
             axios
               .put("https://backend-sign-with-me-gamma.vercel.app/api/lessons/update-lesson", {
-                params: {
                      lessonId: "102",
                      userName: userName,
                      quiz_complete: true
-                 }
               })
               .then((response) => {
                 console.log("Lesson updated:", response.data);
