@@ -3,15 +3,15 @@ const router = express.Router();
 
 // Update lesson route
 router.put("/update-lesson", async (req, res) => {
- const { lessonId, userName, quiz_complete } = req.body;
+ const { lessonId, userName, quiz_complete } = req.query;
 
  try {
    // Log the request body for debugging
-   console.log("Request Body:", req.body);
+   console.log("Request Query:", req.query);
 
    // Find and update the lesson
    const updatedLesson = await req.app.locals.db.collection("lessons").findOneAndUpdate(
-     { lessonId: lessonId.toInt(), userName },
+     { lessonId: parseInt(lessonId), userName },
      { $set: { quiz_complete } },
      { returnDocument: 'after' }
    );

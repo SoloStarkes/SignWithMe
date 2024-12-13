@@ -100,9 +100,11 @@ function Quiz() {
       const lessonId = "101"; // The lesson to check and update
       if (totalScore === 4) {
         await axios.put("https://backend-sign-with-me-gamma.vercel.app/api/lessons/update-lesson", {
-          lessonId: lessonId,
-          userName: userName,
-          quiz_complete: true,
+          params: {
+            lessonId: lessonId,
+            userName: userName,
+            quiz_complete: true
+          }
         });
         console.log("Lesson updated successfully!");
       }
