@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 // Import the auth routes
 const authRoutes = require("./routes/authcall");
 const lessonRoutes = require("./routes/lessonRoutes");
+const examRoutes = require("./routes/examRoutes");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -41,6 +42,7 @@ app.get("/", (req, res) => {
 // API routes
 app.use("/api", authRoutes);
 app.use("/api/lessons", lessonRoutes);
+app.use("/api/exams", examRoutes);
 
 // Error handler
 app.use((err, req, res, next) => {
