@@ -18,7 +18,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000", // Local testing
-      "https://your-frontend-url.vercel.app", // Replace with your Vercel frontend URL
+      "https://signwithme.vercel.app", // Replace with your Vercel frontend URL
     ],
   })
 );
