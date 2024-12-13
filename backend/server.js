@@ -7,17 +7,19 @@ const bodyParser = require("body-parser");
 
 // Import the auth routes
 const authRoutes = require("./routes/authcall");
-
-// Import the lesson routes
-const lessonRoutes = require("./routes/lessonRoutes"); // Add this line to import lesson routes
+const lessonRoutes = require("./routes/lessonRoutes");
 
 const app = express();
-app.use(bodyParser.json());
 const port = process.env.PORT || 5000;
 
+// Middleware
+app.use(bodyParser.json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: [
+      "http://localhost:3000", // Local testing
+      "https://your-frontend-url.vercel.app", // Replace with your Vercel frontend URL
+    ],
   })
 );
 app.use(express.json());
@@ -33,18 +35,17 @@ db.once("open", () => console.log("Connected to MongoDB"));
 
 // Landing route
 app.get("/", (req, res) => {
-  res.status(200).send("A different message!"); // Replace with path to landing page
+  res.status(200).send("A different message!");
 });
 
-// Use the auth routes
+// API routes
 app.use("/api", authRoutes);
+app.use("/api/lessons", lessonRoutes);
 
-// Use the lesson routes
-app.use("/api/lessons", lessonRoutes); // Add this line to use lesson routes
-
-// API route
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from the backend!" });
+// Error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: "Something went wrong!" });
 });
 
 // Start the server
