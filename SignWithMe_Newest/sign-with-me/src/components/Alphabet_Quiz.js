@@ -99,11 +99,14 @@ function Quiz() {
       const userName = localStorage.getItem("userName"); // Fetch logged-in user's username from localStorage
       const lessonId = "101"; // The lesson to check and update
       if (totalScore === 4) {
-        await axios.put("http://localhost:5001/api/lessons/update-lesson", {
-          lessonId: lessonId,
-          userName: userName,
-          quiz_complete: true,
-        });
+        await axios.put(
+          "https://signwithme-92dm.onrender.com/api/lessons/update-lesson",
+          {
+            lessonId: lessonId,
+            userName: userName,
+            quiz_complete: true,
+          }
+        );
         console.log("Lesson updated successfully!");
       }
     } catch (error) {

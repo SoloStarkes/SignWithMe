@@ -1,5 +1,5 @@
-import React from 'react';
-import "./Noun_Adj.css"
+import React from "react";
+import "./Noun_Adj.css";
 function Noun_Adj() {
   const navigateTo = (page) => {
     window.location.href = page;
@@ -8,7 +8,7 @@ function Noun_Adj() {
   return (
     <div>
       <header>
-        <h1 style={{color:'white'}}>ASL Nouns and Adjective Lessons</h1>
+        <h1 style={{ color: "white" }}>ASL Nouns and Adjective Lessons</h1>
         {/* <nav>
           <a style={{padding:'3px',color:'black',fontSize:'20px',fontWeight:'bold',backgroundColor:'rgb(206 136 249)',borderRadius:'5px'}} href="index.html">Home</a>
         </nav> */}
@@ -17,9 +17,11 @@ function Noun_Adj() {
       <main>
         <section>
           <h2>Nouns</h2>
-          <p style={{fontSize:'20px'}}><strong>
-            Nouns are words that represent a person, place, or thing. In ASL, nouns are often signed using distinct handshapes and repeated movements. 
-            Watch these examples of ASL signs for nouns:
+          <p style={{ fontSize: "20px" }}>
+            <strong>
+              Nouns are words that represent a person, place, or thing. In ASL,
+              nouns are often signed using distinct handshapes and repeated
+              movements. Watch these examples of ASL signs for nouns:
             </strong>
           </p>
           <ul>
@@ -57,19 +59,30 @@ function Noun_Adj() {
               ></iframe>
             </li>
           </ul>
-          <div style={{paddingLeft:'30%'}}>
-          <button className = "Assignment_Button" onClick={() => navigateTo('/units/lesson5/N_A/Noun_Assigment1')}>Go to Drag and Drop Noun Excercise</button>
-          <button className = "Assignment_Button" onClick={() => navigateTo('/units/lesson5/N_A/Noun_Assigment2')}>Go to Translation Noun Excercise</button>
+          <div style={{ paddingLeft: "30%" }}>
+            <button
+              className="Assignment_Button"
+              onClick={() => navigateTo("/units/lesson5/N_A/Noun_Assigment1")}
+            >
+              Go to Drag and Drop Noun Excercise
+            </button>
+            <button
+              className="Assignment_Button"
+              onClick={() => navigateTo("/units/lesson5/N_A/Noun_Assigment2")}
+            >
+              Go to Translation Noun Excercise
+            </button>
           </div>
-
         </section>
 
         <section>
           <h2>Adjectives</h2>
-          <p style={{fontSize:'20px'}}>
+          <p style={{ fontSize: "20px" }}>
             <strong>
-            Adjectives describe nouns by providing more information about their size, color, or condition. In ASL, adjectives are often shown with expressive facial gestures and dynamic hand movements.
-            Watch these examples of ASL signs for adjectives:
+              Adjectives describe nouns by providing more information about
+              their size, color, or condition. In ASL, adjectives are often
+              shown with expressive facial gestures and dynamic hand movements.
+              Watch these examples of ASL signs for adjectives:
             </strong>
           </p>
           <ul>
@@ -107,8 +120,13 @@ function Noun_Adj() {
               ></iframe>
             </li>
           </ul>
-          <div style={{paddingLeft:'41%'}} >
-          <button className = "Assignment_Button" onClick={() => navigateTo('/units/lesson5/N_A/Adj_Assigment')}>Go to Adjective Assignment</button>
+          <div style={{ paddingLeft: "41%" }}>
+            <button
+              className="Assignment_Button"
+              onClick={() => navigateTo("/units/lesson5/N_A/Adj_Assigment")}
+            >
+              Go to Adjective Assignment
+            </button>
           </div>
         </section>
       </main>

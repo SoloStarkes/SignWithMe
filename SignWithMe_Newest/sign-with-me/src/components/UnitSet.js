@@ -62,9 +62,12 @@ const UnitSet = () => {
           .flat()
           .map(({ id, key }) =>
             axios
-              .get("http://localhost:5001/api/lessons/get-lesson", {
-                params: { lessonId: id, userName },
-              })
+              .get(
+                "https://signwithme-92dm.onrender.com/api/lessons/get-lesson",
+                {
+                  params: { lessonId: id, userName },
+                }
+              )
               .then((response) => {
                 if (response.data.lesson?.quiz_complete) {
                   setQuizStatus((prev) => ({ ...prev, [key]: true }));

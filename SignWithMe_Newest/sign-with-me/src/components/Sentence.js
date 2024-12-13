@@ -58,11 +58,14 @@ const App = () => {
         if (userName) {
           // Send a PUT request to update the lesson with quiz_complete = true
           axios
-            .put("http://localhost:5001/api/lessons/update-lesson", {
-              lessonId: "201",
-              userName: userName,
-              quiz_complete: true,
-            })
+            .put(
+              "https://signwithme-92dm.onrender.com/api/lessons/update-lesson",
+              {
+                lessonId: "201",
+                userName: userName,
+                quiz_complete: true,
+              }
+            )
             .then((response) => {
               console.log("Lesson updated:", response.data);
             })
